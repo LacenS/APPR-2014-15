@@ -5,6 +5,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 ## Tematika
 
 Delež uporabnikov interneta po državah. http://data.worldbank.org/indicator/IT.NET.USER.P2
+potrošnja po državah :http://datatopics.worldbank.org/consumption/detail
 
 ## Program
 
