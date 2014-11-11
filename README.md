@@ -4,8 +4,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 
 ## Tematika
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Delež uporabnikov interneta po državah. http://data.worldbank.org/indicator/IT.NET.USER.P2
 
 ## Program
 
