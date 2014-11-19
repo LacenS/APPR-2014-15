@@ -7,6 +7,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 Delež uporabnikov interneta po državah v letu 2014 v primerjavu z razvitostjo države.
 Podatke bom dobila : http://www.internetlivestats.com/internet-users-by-country/
 http://en.wikipedia.org/wiki/Global_Internet_usage
+http://data.worldbank.org/indicator/IT.NET.USER.P2
 
 ## Program
 
