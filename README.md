@@ -8,6 +8,7 @@ Delež uporabnikov interneta po državah v letu 2014 v primerjavu z razvitostjo 
 Podatke bom dobila : http://www.internetlivestats.com/internet-users-by-country/
 http://en.wikipedia.org/wiki/Global_Internet_usage
 http://data.worldbank.org/indicator/IT.NET.USER.P2
+http://www.internetlivestats.com/internet-users/#sources
 
 ## Program
 
