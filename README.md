@@ -10,6 +10,8 @@ http://en.wikipedia.org/wiki/Global_Internet_usage
 http://data.worldbank.org/indicator/IT.NET.USER.P2
 http://www.internetlivestats.com/internet-users/#sources
 
+analizirala bom...
+
 ## Program
 
 Glavni program se nahaja v datoteki `projekt.r`. Ko ga poženemo, se izvedejo
