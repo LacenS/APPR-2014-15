@@ -17,3 +17,16 @@ druzine <- uvoziDruzine()
 # datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
 # 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
 # fazah.
+
+
+#uvoz podatkov iz spleta
+library(XML) 
+uvoz_tabele2<-function(){
+  u<-"http://www.internetlivestats.com/internet-users-by-country/"
+  tables <- readHTMLTable(u)
+  n.rows <- unlist(lapply(tables, function(t) dim(t)[1]))
+  
+  tables[[which.max(n.rows)]]
+  
+  
+}
