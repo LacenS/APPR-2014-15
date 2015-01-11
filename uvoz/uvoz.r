@@ -1,6 +1,7 @@
 # 2. faza: Uvoz podatkov
 
 #uvoz podatkov iz spleta
+library(XML)
 uvoz_tabele2<-function(){
   u<-"http://www.internetlivestats.com/internet-users-by-country/"
   tables <- readHTMLTable(u)
@@ -16,5 +17,5 @@ uvoz_tabele2<-function(){
   return(r)
 }
 
-cat("Uvažam podatke o uporabnikih interneta...\n")
+cat("Uva??am podatke o uporabnikih interneta...\n")
 uporabniki.interneta <- uvoz_tabele2()
