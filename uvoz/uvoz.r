@@ -96,7 +96,11 @@ uvoz_tabele5 <- function() {
 uvoz_tabele6 <- function() {
   t6 <- read.csv("gdp.pc.st.csv", skip=1)
   t6 <- t6[, c(1, 45 :58)] # da imam podatke samo od 200-2013 (2014 so tako samo "NA-ji")
-  return(t6) #ne cisto "urejena tabela" 
+  t6 <- data.frame(Country = t6$Country.Name,
+                     apply(t6[2:length(colnames(t6))], 2, function(x) { if (is.numeric(x)){round(x, 2)}}))
+  stolpci <- gsub("[X]", "", colnames(t6))
+  colnames(t6)<-stolpci
+  return(t6) 
   
   
 }
