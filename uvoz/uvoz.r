@@ -4,15 +4,18 @@
 uvoz_tabele1 <- function() {
   t1<-read.csv("uporabniki_interneta_po_drzavah.csv", skip=2, na.strings="NA", sep=",", dec=".")
   tabela_1<-t1[, c(1, 3,34:58)]
-  tab1 <- data.frame(Country = tabela_1$Country.Name,
+  tab1 <- data.frame(row.names = tabela_1$Country.Name,
                      Indicator.Name = tabela_1$Indicator.Name,
                      apply(tabela_1[3:26], 2, function(x) { if (is.numeric(x)){round(x, 2)}}))
   stolpci <- gsub("[X]", "", colnames(tab1))
   colnames(tab1)<-stolpci
+  
   return(tab1)
   
   # podatki o  uporabnikih interneta po posameznih drzavah v letih 1990-2013
 }
+
+cat("Uvazam podatke o uporabnikih interneta po posameznih drzavah v letih 1990-2013\n")
 
 
 
@@ -28,14 +31,17 @@ uvoz_tabele2<-function(){
   r <- tables[[which.max(n.rows)]]
   stolpci <- gsub("\\s+", " ", colnames(r))
   stolpci <- c(stolpci[2], stolpci[1], stolpci[3:length(stolpci)])
-  rownames(r)<-r[,1]
+  vrstice<-r[,1]
   
-  r <- data.frame(r["Country"], r["Rank"],
+  r <- data.frame(row.names = r$Country, r["Rank"],
                   apply(r[3:10], 2,
                         function(x) as.numeric(gsub("[,%]", "", x))))
-  colnames(r) <- stolpci
+  colnames(r) <- stolpci[-1]
+  
+  
   return(r)
 }
+cat("Uvazam podatke o stevilu uporabnikov interneta po posameznih drzavah v letu 2014 v primerjavi z delezem svetovne populacije.\n")
 
 
 #Tabela prikazuje uporabnike interneta svetovnega prebivalstva med leti 1993-2014
@@ -46,14 +52,17 @@ uvoz_tabele3<-function(){
   stolpci <- c('Year', 'Internet users', 'Users growth %', 'World population', 
                'Population growth %', 'Penetration (% of population with Internet)')
   tabela3 <- data.frame(tabela3)
-  colnames(tabela3)<-stolpci
-  tabela3 <- data.frame(tabela3["Year"],
-                        apply(tabela3[2:6], 2,
+  vrstice <- tabela3$Year
+  
+  tabela3 <- data.frame(apply(tabela3[2:6], 2,
                               function(x) as.numeric(gsub("[,%]", "", x))))
+  colnames(tabela3) <- stolpci
+  rownames(tabela3) <- vrstice
   return(tabela3[1:22, ])
   
   
 }
+cat('Uvazam podatke o delezu uporabnikov interneta glede na celotno populacijo med leti 1993-2014.\n')
 
 #Uvoz tabele iz te strani: http://www.internetworldstats.com/stats.htm
 #Tabela prikazuje uporabnike interneta po geografskih regijah
@@ -70,14 +79,16 @@ uvoz_tabele4<-function(){
   t4 <- t4[, 2:7]
   vrstice <- rownames(t4)
   stolpci <- colnames(t4)
-  t4 <- data.frame(Country=vrstice, apply(tab[1:6], 2 ,function(x) as.numeric(gsub("[,%]", "",x))))
+  t4 <- data.frame(apply(t4[2:6], 2 ,function(x) as.numeric(gsub("[,%]", "",x))))
   
   colnames(t4) <- c("Country", stolpci)
+  vrstice <- rownames(t4)
   return(t4)
   
   
   
 }
+cat("Uvazam podatke o uporabnikih interneta po geografskih regijah-kontinentih.\n")
 
 # Uvoz 5 tabele, ki prikazuje drzave glede na "Income group""(za primerjavo med delezem uporabnikov interneta)
 # v obliki .csv iz te strani: http://databank.worldbank.org/data/views/reports/tableview.aspx?isshared=true
@@ -85,12 +96,13 @@ uvoz_tabele5 <- function() {
   t5 <- read.csv("gdp.pc.csv")
   t5 <- t5[,c(1,4)]
   t5 <- data.frame( Country=t5$X...Country.Name, apply(t5[2], 2 ,function(x) gsub(": nonOECD", "", x)))
-  t5 <- data.frame( Country=t5["Country"], apply(t5[2], 2 ,function(x) gsub(": OECD", "", x)))
+  t5 <- data.frame( row.names=t5["Country"], apply(t5[2], 2 ,function(x) gsub(": OECD", "", x)))
   leveli <- c("Low income", "Lower middle income", "Upper middle income",  "High income")
   t5$IncomeGroup<-factor(t5$IncomeGroup, levels=leveli, ordered=TRUE)
   return(t5)
   
 }
+cat('Uvazam tabelo, ki prikazuje drzave glede na "Income group".\n')
 
 # Uvoz 6 tabele, ki prikazuje gdp pc
 uvoz_tabele6 <- function() {
@@ -104,11 +116,11 @@ uvoz_tabele6 <- function() {
   
   
 }
+cat("Uvazam podatke o GDP per capita po posameznih drzavah.\n")
 
   
 
 
-cat("Uvazam podatke o uporabnikih interneta...\n")
 
 
 

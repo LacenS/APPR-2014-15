@@ -1,6 +1,10 @@
-# # 2. faza: Obdelava, uvoz in čiščenje podatkov
-# source("uvoz/uvoz.r")
-# 
+# # Pobrišemo PDF-je in počistimo delovno okolje
+# silent <- TRUE
+# source("clearpdf.r")
+
+# 2. faza: Obdelava, uvoz in čiščenje podatkov
+source("uvoz/uvoz.r")
+
 # # 3. faza: Analiza in vizualizacija podatkov
 # source("vizualizacija/vizualizacija.r")
 # 
