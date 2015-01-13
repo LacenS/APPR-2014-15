@@ -3,21 +3,20 @@
 #uvoz tabele csv iz te strani: http://data.worldbank.org/indicator/IT.NET.USER.P2
 uvoz_tabele1 <- function() {
   t1<-read.csv("podatki/uporabniki_interneta_po_drzavah.csv", skip=2, na.strings="NA", sep=",", dec=".", fileEncoding="Windows-1252")
-  tabela_1<-t1[, c(1, 3,34:58)]
+  tabela_1<-t1[, c(1, 3,44:58)]
   tab1 <- data.frame(row.names = tabela_1$Country.Name,
                      Indicator.Name = tabela_1$Indicator.Name,
-                     apply(tabela_1[3:26], 2, function(x) { if (is.numeric(x)){round(x, 2)}}))
+                     apply(tabela_1[3:16], 2, function(x) { if (is.numeric(x)){round(x, 2)}}))
   stolpci <- gsub("[X]", "", colnames(tab1))
   colnames(tab1)<-stolpci
   
   return(tab1)
+   # za izlocitev vrstic z manjkajocimi podatki bom kasneje uporabila funkcijo complete.cases()
   
   # podatki o  uporabnikih interneta po posameznih drzavah v letih 1990-2013
 }
 
 cat("Uvazam podatke o uporabnikih interneta po posameznih drzavah v letih 1990-2013\n")
-
-
 
 
 #uvoz podatkov iz spleta iz te strani: http://www.internetlivestats.com/internet-users-by-country/
@@ -52,12 +51,12 @@ uvoz_tabele3<-function(){
   stolpci <- c('Year', 'Internet users', 'Users growth %', 'World population', 
                'Population growth %', 'Penetration (% of population with Internet)')
   tabela3 <- data.frame(tabela3)
-  vrstice <- tabela3$Year
+  vrstice <- tabela3$internet.users.table.Year.July.1.
   
-  tabela3 <- data.frame(apply(tabela3[2:6], 2,
+  tabela3 <- data.frame(row.names=vrstice, apply(tabela3[2:6], 2,
                               function(x) as.numeric(gsub("[,%]", "", x))))
   colnames(tabela3) <- stolpci[-1]
-  rownames(tabela3) <- vrstice
+  
   return(tabela3[1:22, ])
   
   
@@ -92,14 +91,16 @@ cat("Uvazam podatke o uporabnikih interneta po geografskih regijah-kontinentih.\
 
 # Uvoz 5 tabele, ki prikazuje drzave glede na "Income group""(za primerjavo med delezem uporabnikov interneta)
 # v obliki .csv iz te strani: http://databank.worldbank.org/data/views/reports/tableview.aspx?isshared=true
+
 uvoz_tabele5 <- function() {
-  t5 <- read.csv("podatki/gdp.pc.csv", fileEncoding="Windows-1252")
+  t5 <- read.csv("podatki/gdp.pc.csv", fileEncoding="UTF-8")
   t5 <- t5[,c(1,4)]
-  t5 <- data.frame( Country=t5$X...Country.Name, apply(t5[2], 2 ,function(x) gsub(": nonOECD", "", x)))
-  t5 <- data.frame( row.names=t5["Country"], apply(t5[2], 2 ,function(x) gsub(": OECD", "", x)))
+  t5 <- data.frame( Country=t5$Country.Name, apply(t5[2], 2 ,function(x) gsub(": nonOECD", "", x)))
+  t5 <- data.frame( row.names=t5$Country, apply(t5[2], 2 ,function(x) gsub(": OECD", "", x)))
   leveli <- c("Low income", "Lower middle income", "Upper middle income",  "High income")
   t5$IncomeGroup<-factor(t5$IncomeGroup, levels=leveli, ordered=TRUE)
   return(t5)
+  # ali return(na.omit(t5))...da se znebim vrstic z manjkajocimi podatki
   
 }
 cat('Uvazam tabelo, ki prikazuje drzave glede na "Income group".\n')
@@ -118,7 +119,12 @@ uvoz_tabele6 <- function() {
 }
 cat("Uvazam podatke o GDP per capita po posameznih drzavah.\n")
 
-  
+t1 <- uvoz_tabele1()
+t2 <- uvoz_tabele2()
+t3 <- uvoz_tabele3()
+t4 <- uvoz_tabele4()
+t5 <- uvoz_tabele5()
+t6 <- uvoz_tabele6()
 
 
 # uvoz tabele, ki prikazuje pricakovano zivljenjsko dobo po posameznih drzavah
