@@ -9,15 +9,43 @@
 \begin{document}
 \title{Poročilo pri predmetu \\
 Analiza podatkov s programom R}
-\author{Študent FMF}
+\author{Špela Lačen}
 \maketitle
 
 \section{Izbira teme}
 
+Tema mojega projekta je spreminjanje deleža uporabnikov interneta skozi leta po posameznih državah, v svetovnem okvirju ter kakšno je bilo stanje leta 2014. Iz izbranih podatkov bom tudi poskušala najt povezavo med  GDPpc v posamezni državi ter deležem uporabnikov interneta in tudi če višji delež  vpliva na višjo pričakovano življenjsko dobo.
+\\ Cilj tega projekta je spoznavanje programa R skozi analizo podatkov.
+
+\\ (Povezava do raziskave na kaj vse vpliva dostop do interneta: \item \url{http://www.mckinsey.com/insights/high_tech_telecoms_internet/internet_matters}
+
+\newpage
+
 \section{Obdelava, uvoz in čiščenje podatkov}
+V svoj program sem uvozila 3 tabele  v obliki .csv ter 3 iz spletnih strani. Več o uvozu posamezne tabele je v datoteki "uvoz.r".
+Nekaj tabel sem v R-ju sestavila sama s pomočjo uvoženih datotek.
+
+\\ Podatke sem pridobila iz naslednjih spletnih strani:
+\begin{itemize} 
+\item \url{http://data.worldbank.org/indicator/IT.NET.USER.P2}
+\item \url{http://www.internetlivestats.com/internet-users-by-country/}
+\item \url{http://www.internetlivestats.com/internet-users/#trend}
+\item \url{http://www.internetworldstats.com/stats.htm}
+\item \url{http://databank.worldbank.org/data/views/reports/tableview.aspx?isshared=true
+\item \url{http://www.nationmaster.com/country-info/stats/Health/Life-expectancy-at-birth%2C-total/Years#map}
+
+
+
+
+
+\\ Iz tabel sem narisala grafe, ki prikazujejo...
+
+Na koncu sem grafe izvozila v pdf datoteki:
+
 
 \section{Analiza in vizualizacija podatkov}
-
+V tretji fazi sem podatke uvožene v drugi fazi prikazala na zemljevidu, zato sem v R uvozila zemljevid sveta v obliki shp.
+ \\
 \includegraphics{../slike/povprecna_druzina.pdf}
 
 \section{Napredna analiza podatkov}
