@@ -16,23 +16,29 @@ svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthd
 #                           encoding = "Windows-1250")
 # 
 # # Funkcija, ki podatke preuredi glede na vrstni red v zemljevidu
-# preuredi <- function(podatki, zemljevid) {
-#   nove.obcine <- c()
-#   manjkajo <- ! nove.obcine %in% rownames(podatki)
-#   M <- as.data.frame(matrix(nrow=sum(manjkajo), ncol=length(podatki)))
-#   names(M) <- names(podatki)
-#   row.names(M) <- nove.obcine[manjkajo]
-#   podatki <- rbind(podatki, M)
-#   
-#   out <- data.frame(podatki[order(rownames(podatki)), ])[rank(levels(zemljevid$OB_UIME)[rank(zemljevid$OB_UIME)]), ]
-#   if (ncol(podatki) == 1) {
-#     out <- data.frame(out)
-#     names(out) <- names(podatki)
-#     rownames(out) <- rownames(podatki)
-#   }
-#   return(out)
-# }
-# 
+preuredi <- function(podatki, zemljevid) {
+  nove.drzave <- svet$admin[!svet$admin %in% row.names(podatki)]
+  manjkajo <- ! nove.drzave %in% rownames(podatki)
+  M <- as.data.frame(matrix(nrow=sum(manjkajo), ncol=length(podatki)))
+  names(M) <- names(podatki)
+  row.names(M) <- nove.drzave[manjkajo]
+  podatki <- rbind(podatki, M)
+  
+  out <- data.frame(podatki[order(rownames(podatki)), ])[rank(levels(zemljevid$admin)[rank(zemljevid$admin)]), ]
+  if (ncol(podatki) == 1) {
+    out <- data.frame(out)
+    names(out) <- names(podatki)
+    rownames(out) <- rownames(podatki)
+  }
+  return(out)
+
+}
+
+# en zemljevid bo glede na % uporabnikov v letu 2000
+# drugi glede na % uporabnikov v letu 2013
+# tretnji glede na visino gdp
+# in cetrti glede na pricakovano zivljenjsko dobo
+
 # # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 # druzine <- preuredi(druzine, obcine)
 # 
