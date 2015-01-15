@@ -93,9 +93,9 @@ cat("Uvazam podatke o uporabnikih interneta po geografskih regijah-kontinentih.\
 # v obliki .csv iz te strani: http://databank.worldbank.org/data/views/reports/tableview.aspx?isshared=true
 
 uvoz_tabele5 <- function() {
-  t5 <- read.csv("podatki/gdp.pc.csv", fileEncoding="UTF-8")
+  t5 <- read.csv("podatki/gdp.pc.csv")
   t5 <- t5[,c(1,4)]
-  t5 <- data.frame( Country=t5$Country.Name, apply(t5[2], 2 ,function(x) gsub(": nonOECD", "", x)))
+  t5 <- data.frame(Country=t5[,1], apply(t5[2], 2 ,function(x) gsub(": nonOECD", "", x)))
   t5 <- data.frame( row.names=t5$Country, apply(t5[2], 2 ,function(x) gsub(": OECD", "", x)))
   leveli <- c("Low income", "Lower middle income", "Upper middle income",  "High income")
   t5$IncomeGroup<-factor(t5$IncomeGroup, levels=leveli, ordered=TRUE)
