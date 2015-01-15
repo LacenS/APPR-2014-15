@@ -128,8 +128,7 @@ t6 <- uvoz_tabele6()
 
 #tabela sestavljena iz t1 in t2, ki jo bom uporabila pri kasnejsi analizi
 tabela_7 <- function(){
-  attach(t1)
-  attach(t2)
+  
   kategorije <- c("0-10 %", "10-20 %", "20-30 %", "30-40 %", "40-50 %", 
                   "50-60 %", "60-70 %", "70-80 %", "80-90 %", "90-100 %")
   #vrstice, ki ustrezajo pogoju
@@ -231,14 +230,13 @@ tabela_7 <- function(){
   nov<-data.frame(t(zagraf))
   
   rownames(nov)<-kategorije
-  colnames(nov)<-c("2000","2003","2006","2009","2012","2014")
+  
   return(nov)
   
   
   
   
-  detach(t1)
-  detach(t2)
+  
 }
 
 t7 <- tabela_7()
