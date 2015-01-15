@@ -4,6 +4,7 @@ library(ggplot2)
 
 # iz t7 bom naredila graf po posameznih letih v koliko drzavah je med 0-5%, 5-10%...95-100% uporabnikov
 
+<<<<<<< HEAD
 # 1 graf prikazuje prvih 10 drzav iz 2. tabele...zanimivo: Kitajci predstavljajo vec kot 20 % vseh uporabnikov interneta,
 # medtem, ko jih ima manj kot 50% dostop do interneta
 
@@ -19,7 +20,14 @@ pie(table(t7$X2014))
 # graf iz 3 tabele
 dr<-data.frame(t3)
 qplot(rownames(dr),dr$Penetration....of.population.with.Internet. , data=dr, geom=c('point', 'smooth'))
+=======
+#graf iy četrte tabele-kontinenti
+d<-data.frame(t4)
+attach(d)
+pie(d[1:7,5])
+>>>>>>> FETCH_HEAD
 
+detach(d)
 
                    
                    
