@@ -9,6 +9,21 @@ uvoz_tabele1 <- function() {
                      apply(tabela_1[3:16], 2, function(x) { if (is.numeric(x)){round(x, 2)}}))
   stolpci <- gsub("[X]", "", colnames(tab1))
   colnames(tab1)<-stolpci
+  rownames(tab1)[247]<-"Venezuela"
+  rownames(tab1)[48]<-"Republic of Congo"
+  rownames(tab1)[71]<-'Egypt'
+  rownames(tab1)[110]<-"Iran"
+  rownames(tab1)[193]<-"Republic of Korea"
+  rownames(tab1)[157]<-"Macedonia"
+  rownames(tab1)[254]<-"Yemen"
+  rownames(tab1)[248]<-"United States Virgin Islands"
+  rownames(tab1)[226]<-"Syria"
+  rownames(tab1)[220]<-"Slovakia"
+  rownames(tab1)[99]<-"Hong Kong"
+  
+    
+   
+    
   
   return(tab1)
    # za izlocitev vrstic z manjkajocimi podatki bom kasneje uporabila funkcijo complete.cases()
