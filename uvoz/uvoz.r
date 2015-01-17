@@ -20,6 +20,7 @@ uvoz_tabele1 <- function() {
   rownames(tab1)[226]<-"Syria"
   rownames(tab1)[220]<-"Slovakia"
   rownames(tab1)[99]<-"Hong Kong"
+  rownames(tab1)[200]<-"Russia"
   
     
    

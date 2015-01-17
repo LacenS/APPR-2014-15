@@ -2,9 +2,13 @@
 
 # Uvozimo funkcijo za pobiranje in uvoz zemljevida.
 source("lib/uvozi.zemljevid.r")
+library(maptools)
+library(RColorBrewer)
+library(classInt)
 
 # Uvozimo zemljevid.
 cat("Uvažam zemljevid...\n")
+# d <- d[!is.na(d)]
 
 svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
                         "svet", "ne_50m_admin_0_countries.shp", mapa = "zemljevid",
@@ -36,10 +40,50 @@ tab2 <- preuredi(t2, svet)
 svet$X2014 <- tab2$Penetration....of.Pop..with.Internet.
 
 
-# en zemljevid bo glede na % uporabnikov v letu 2000
-# drugi glede na % uporabnikov v letu 2014
-# tretnji glede na visino gdp
-# in cetrti glede na pricakovano zivljenjsko dobo
+# vektor barv
+ramp <- colorRamp(c("blue", "white"))
+vektor <- rgb( ramp(seq(0, 1, length = 5)), max = 255)
+barve <- ifelse(is.na(svet$X2000), "white", "black")
+barve[which(svet$X2000>=0 & svet$X2000<10)] <- vektor[1]
+barve[which(svet$X2000>10 & svet$X2000<20)] <- vektor[2]
+barve[which(svet$X2000>20 & svet$X2000<30)] <- vektor[3]
+barve[which(svet$X2000>30 & svet$X2000<40)] <- vektor[4]
+barve[which(svet$X2000>40 & svet$X2000<50)] <- vektor[5]
+barve[which(svet$X2000>50 & svet$X2000<60)] <- vektor[6]
+barve[which(svet$X2000>60 & svet$X2000<70)] <- vektor[7]
+barve[which(svet$X2000>70 & svet$X2000<80)] <- vektor[8]
+barve[which(svet$X2000>80 & svet$X2000<90)] <- vektor[9]
+barve[which(svet$X2000>90)] <- vektor[10]
+
+
+
+# #Narišimo zemljevid v PDF.
+# cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2000. \n")
+# pdf("slike/zemljevid1.pdf", width=6, height=4)
+# 
+# spplot(svet, c("X2000","X2014"),col.regions=rainbow(10), scales=list(draw = TRUE))
+
+# # creates a own color palette from red to green
+ 
+# library(lattice) # required for trellis.par.set():
+# trellis.par.set(sp.theme()) # sets color ramp to bpy.colors()
+# 
+# # (optional) defines the color breaks manually for a "skewed" color transition
+# col_breaks = c(seq(-1,0,length=100),  # for red
+#                seq(0,0.8,length=100),              # for yellow
+#                seq(0.8,1,length=100))              # for green
+# 
+# 
+# colors <- brewer.pal(9, "YlOrRd")
+# 
+# print(spplot(svet, "X2000", col.regions = rainbows(10, start=3/6, end=4/6),
+#              main = "Delez uporabnikov interneta po svetu v letu 2000",
+#              sp.layout = list(list("sp.polygons", svet[United States,], fill = "red"),
+#                               list("sp.text", coordinates(svet[United States,]),
+#                                    svet$stevilo.trgovin[USA], cex = 0.5))))
+
+#dev.off()
+
 
 # # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 # druzine <- preuredi(druzine, obcine)

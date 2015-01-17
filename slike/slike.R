@@ -1,5 +1,6 @@
 # program, ki izrise grafe
-source("uvoz/uvoz.r")
+library(zoo)
+library(spacetime)
 library(ggplot2)
 library(plotrix)
 
