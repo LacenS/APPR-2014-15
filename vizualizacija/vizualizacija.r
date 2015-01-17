@@ -41,8 +41,9 @@ svet$X2014 <- tab2$Penetration....of.Pop..with.Internet.
 
 
 # vektor barv
-ramp <- colorRamp(c("blue", "white"))
-vektor <- rgb( ramp(seq(0, 1, length = 5)), max = 255)
+#ramp <- colorRamp(c("blue", "white"))
+#vektor <- rgb( ramp(seq(0, 1, length = 10)), max = 255)
+vektor <- rev(palette(gray(seq(0,.9,len = 10))))
 barve <- ifelse(is.na(svet$X2000), "white", "black")
 barve[which(svet$X2000>=0 & svet$X2000<10)] <- vektor[1]
 barve[which(svet$X2000>10 & svet$X2000<20)] <- vektor[2]
@@ -54,7 +55,35 @@ barve[which(svet$X2000>60 & svet$X2000<70)] <- vektor[7]
 barve[which(svet$X2000>70 & svet$X2000<80)] <- vektor[8]
 barve[which(svet$X2000>80 & svet$X2000<90)] <- vektor[9]
 barve[which(svet$X2000>90)] <- vektor[10]
+ 
+#1. zemljevid leto 2000
+cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2000. \n")
+pdf("slike/zemljevid1.pdf", width=6, height=4)
+print(plot(svet, col=barve)) #To zdaj zgleda ok, problem je, da so napacni podatki v tabelah ??
+# dodala bom se imenske oznake za nekatere drzave
+dev.off()
 
+#2 zemljevid
+barve2 <- ifelse(is.na(svet$X2007), "white", "black")
+barve2[which(svet$X2007>=0 & svet$X2007<10)] <- vektor[1]
+barve2[which(svet$X2007>10 & svet$X2007<20)] <- vektor[2]
+barve2[which(svet$X2007>20 & svet$X2007<30)] <- vektor[3]
+barve2[which(svet$X2007>30 & svet$X2007<40)] <- vektor[4]
+barve2[which(svet$X2007>40 & svet$X2007<50)] <- vektor[5]
+barve2[which(svet$X2007>50 & svet$X2007<60)] <- vektor[6]
+barve2[which(svet$X2007>60 & svet$X2007<70)] <- vektor[7]
+barve2[which(svet$X2007>70 & svet$X2007<80)] <- vektor[8]
+barve2[which(svet$X2007>80 & svet$X2007<90)] <- vektor[9]
+barve2[which(svet$X2007>90)] <- vektor[10]
+cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2007. \n")
+pdf("slike/zemljevid2.pdf", width=6, height=4)
+
+
+print(plot(svet, col=barve2))
+dev.off()
+
+#3 zemljevid bo glede na leto 2014 pobarvan se glede na gdp kategorije-high income...
+#4 zemljevid bo glede na leto 2014 + kategorije zivljenjske dobe(ce ne bo zgledalo ok pa bom naredila graf)
 
 
 # #Narišimo zemljevid v PDF.
