@@ -259,10 +259,18 @@ t7 <- tabela_7()
 
 
 
-# uvoz tabele, ki prikazuje pricakovano zivljenjsko dobo po posameznih drzavah
-#(bom kasneje uredila, ce jo bom potrebovala)
-# u <- "http://www.nationmaster.com/country-info/stats/Health/Life-expectancy-at-birth%2C-total/Years#map"
-# tables <- readHTMLTable(u)
-# tabela7 <- tables[1]
+# uvoz tabele, ki prikazuje pricakovano zivljenjsko dobo po posameznih drzavah, podatki so za leto 2011
+uvoz_tabele8 <- function() {
+  u <- "http://www.nationmaster.com/country-info/stats/Health/Life-expectancy-at-birth%2C-total/Years#map"
+  tables <- readHTMLTable(u)
+  tabela <- tables[1]
+  tabela <- data.frame(tabela)
+  vrstice <- tabela[,2]
+  tabela <- data.frame(row.names=vrstice,tabela[,3])
+  
+  return(tabela) 
+}
+  
 
+t8<-uvoz_tabele8()
 

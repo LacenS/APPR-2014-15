@@ -8,7 +8,6 @@ library(classInt)
 
 # Uvozimo zemljevid.
 cat("Uvažam zemljevid...\n")
-# d <- d[!is.na(d)]
 
 svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
                         "svet", "ne_50m_admin_0_countries.shp", mapa = "zemljevid",
@@ -78,50 +77,59 @@ svet$X2014 <- tab2$Penetration....of.Pop..with.Internet.
 vektor <- c(brewer.pal(9, "Blues"),"black")
 barve <- ifelse(is.na(svet$X2000), "white", "black")
 barve <- vektor[floor(svet$X2000/10) + 1]
+barve2 <- ifelse(is.na(svet$X2007), "white", "black")
+barve2 <- vektor[floor(svet$X2007/10) + 1]
+barve3 <- ifelse(is.na(svet$X2014), "white", "black")
+barve3 <- vektor[floor(svet$X2014/10) + 1]
+kategorije <- c("0-10 %", "10-20 %", "20-30 %", "30-40 %", "40-50 %", 
+                "50-60 %", "60-70 %", "70-80 %", "80-90 %", "90-100 %")
 
  
 #1. zemljevid leto 2000
-cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2000. \n")
+cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2000, 2007, 2014. \n")
 pdf("slike/zemljevid1.pdf", width=6, height=4)
+par(mar = rep(2, 4))
 print(plot(svet, col=barve)) 
-# dodala bom se imenske oznake za nekatere drzave
-dev.off()
-
-#2 zemljevid
-barve2 <- ifelse(is.na(svet$X2007), "white", "black")
-barve2 <- vektor[floor(svet$X2007/10) + 1]
-cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2007. \n")
-pdf("slike/zemljevid2.pdf", width=6, height=4)
-
-
+legend("bottom",kategorije, fill = vektor,
+       border = "black", cex=.42, xjust=0.5, horiz=TRUE)
+title("Uporabniki interneta v letu 2000", 
+      cex.main = 2,   font.main= 3, col.main= "black")
 print(plot(svet, col=barve2))
-dev.off()
-
-#3 zemljevid bo glede na leto 2014 pobarvan se glede na gdp kategorije-high income...
-barve3 <- ifelse(is.na(svet$X2014), "white", "black")
-barve3 <- vektor[floor(svet$X2014/10) + 1]
-cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2014. \n")
-pdf("slike/zemljevid3.pdf", width=6, height=4)
-
-
+title("Uporabniki interneta v letu 2007", 
+      cex.main = 2,   font.main= 3, col.main= "black")
+legend("bottom",kategorije, fill = vektor,
+       border = "black", cex=.42, xjust=0.5, horiz=TRUE)
 print(plot(svet, col=barve3))
+legend("bottom",kategorije, fill = vektor,
+       border = "black", cex=.42, xjust=0.5, horiz=TRUE)
+title("Uporabniki interneta v letu 2014", cex.main = 2,   font.main= 3, col.main= "black")
+ 
+dev.off()
+
+
+# na zemljevidu za 2014 bom oznacila drzave, ki spadajo v high income group
+cat("Rišem zemljevid deleza uporabnikov interneta po svetu v letu 2014 z oznacenimi drzavami, ki spadajo v \"high income group\". \n")
+pdf("slike/zemljevid2.pdf", width=6, height=4)
+print(plot(svet, col=barve3))
+title("Uporabniki interneta v letu 2014 \n z oznacenimi drzavami, ki spadajo v \"High income group\"", cex.main = 1,   font.main= 2, col.main= "black")
+drzave1 <- which(svet$income_grp=="1. High income: OECD")
+legend("bottom",kategorije, fill = vektor,
+       border = "black", cex=.392, xjust=0.5)
+points(coordinates(svet[drzave1,]), pch = 20, col="White", cex=.3) #vidimo da se ujema z drzavami z najvecjim delezem..(oznake bom se kasneje spremenila..)
 dev.off()
 
 
 
-#4 zemljevid bo glede na leto 2014 + kategorije zivljenjske dobe(ce ne bo zgledalo ok pa bom naredila graf)
-
-# da bom dobila drzave  po skupinah :high income, ...
-
-
-# tab5 <- preuredi(t5, svet)
-# drzave1 <- which(tab5$IncomeGroupe=="High income")
-# drzave2 <- which(tab5$IncomeGroupe=="Upper middle income")
-# drzave3 <- which(tab5$IncomeGroupe=="Lower middle income")
-# drzave4 <- which(tab5$IncomeGroupe=="Low income")
+#se zemljevid glede na visino gdp v letu 2013
+# rrt <- nc$SID74/nc$BIR74
+# brks <- quantile(rrt, seq(0,1,1/10)) #bom razdelila v 10 kategorij
+# cols <- grey((length(brks):2)/length(brks))
+# dens <- (2:length(brks))*3
 
 
 
+
+#zemljevid bo glede na leto 2014 + kategorije zivljenjske dobe(ce ne bo zgledalo ok pa bom naredila graf)
 
 
 
