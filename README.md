@@ -17,7 +17,7 @@ Podatke sem pridobila iz naslednjih spletnih strani:
 /- http://databank.worldbank.org/data/views/reports/tableview.aspx?isshared=true
 /- http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip
 
-
+\\ (Povezava do raziskave na kaj vse vpliva dostop do interneta: \item \url{http://www.mckinsey.com/insights/high_tech_telecoms_internet/internet_matters}
 
 ## Program
 
