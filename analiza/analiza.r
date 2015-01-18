@@ -4,6 +4,10 @@
 # 2. poskusala bom napovedat kako bo narascalo st uporabnikov, verjetno samo za dolocene drzave??..
 # recimo za slovenijo rabim tab1 in t6 pri t6 bi bilo dobro preuredit podatke...
 # plot(tab1[205,], t6[211,])
+#funkcija decompose
+##ramp <- colorRamp(c("blue", "white"))
+#vektor <- rgb( ramp(seq(0, 1, length = 10)), max = 255) ...za barve
+# za izlocitev vrstic z manjkajocimi podatki funkcija complete.cases()
 
 
 
