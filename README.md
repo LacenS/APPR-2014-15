@@ -6,7 +6,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 
 Analiza deleža uporabnikov interneta po svetu.
 
-Primerjala bom spreminjanje deleža uporabnikov interneta po posameznih državah skozi leta, te podatke bom prikazala na zemljevidu sveta. Poskušala bom tudi najti povezavo med višjim deležem uporabnikov interneta, višjo pričakovano življenjsko dobo ter višjim GDP pc v posamezni državi.
+Primerjala bom spreminjanje deleža uporabnikov interneta po posameznih državah skozi leta, te podatke bom prikazala na zemljevidu sveta. Poskušala bom tudi najti povezavo med deležem uporabnikov interneta,  pričakovano življenjsko dobo ter GDP pc v posamezni državi.
 
 Podatke sem pridobila iz naslednjih spletnih strani:
 /- http://data.worldbank.org/indicator/IT.NET.USER.P2

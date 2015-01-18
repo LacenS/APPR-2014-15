@@ -7,9 +7,10 @@
 \pagestyle{plain}
 
 \begin{document}
+
+\author{Špela Lačen}
 \title{Poročilo pri predmetu \\
 Analiza podatkov s programom R}
-\author{Špela Lačen}
 \maketitle
 
 \section{Izbira teme}
@@ -19,11 +20,12 @@ Tema mojega projekta je spreminjanje deleža uporabnikov interneta skozi leta po
 
 \\ (Povezava do raziskave na kaj vse vpliva dostop do interneta: \item \url{http://www.mckinsey.com/insights/high_tech_telecoms_internet/internet_matters}
 
-\newpage
-
 \section{Obdelava, uvoz in čiščenje podatkov}
-V svoj program sem uvozila 3 tabele  v obliki .csv ter 3 iz spletnih strani. Več o uvozu posamezne tabele je v datoteki "uvoz.r".
-Nekaj tabel sem v R-ju sestavila sama s pomočjo uvoženih datotek.
+
+V svoj program sem uvozila 3 tabele  v obliki \verb|.csv| ter 4 iz spletnih strani. Tu mi je največ težav povzročalo to, da R zelo striktno ločuje tipe podatkov(\verb|matrika, data.frame...| in da sem ugotovila s kakimi tabelami delam. Veliko časa sem tudi porabila, da sem preimenovala stolpce in vrstice, kar se je v kasnejših fazah, sploh pri številskih označbah(na primer za posamezna leta) izkazalo za slabo potezo, saj je pri uporabi podatkov iz tabel pomembno, da stolpci in vrstice nimajo številskih imen. Več o uvozu posamezne tabele je v datoteki \verb|uvoz/uvoz.r|v komentarjih. V kasnejši fazi se je tudi izkazalo, da je bila tabela 5 nepotrebna saj so bili podatki iz te tabele, že vključeni v zemljevid sveta.
+
+Nekaj tabel sem v R-ju zaradi kasnejše analize sestavila sama s pomočjo uvoženih datotek.
+
 
 \\ Podatke sem pridobila iz naslednjih spletnih strani:
 \begin{itemize} 
@@ -35,21 +37,58 @@ Nekaj tabel sem v R-ju sestavila sama s pomočjo uvoženih datotek.
 \item \url{http://www.nationmaster.com/country-info/stats/Health/Life-expectancy-at-birth%2C-total/Years#map}
 
 
+\\ Iz tabel sem nato narisala grafe. Ta del se mi zdi najbolj zahteven saj obstaja ogromno funkcij za risanje tabel in vsaka ima svoje specifike v kakšni obliki moraš podat podatke.
 
+Prvi graf je stolpični in prikazuje prvih 10 držav, ki predstavljajo največji delež uporabnikov interneta po svetu. Prvi stolpec prikazuje kolikšen delež prebivalcev ima dostop do interneta, drugi pa kolikšen delež uporabnikov interneta predstavljajo. Tu se mi je zdelo najbolj zanimivo, da recimo Kitajci predstavljajo več kot 20 \% vseh uporabnikov interneta, med tem, ko jih ima manj kot 50 \% dostop do interneta.
+\includegraphics[width=\textwidth]{../slike/graf1.pdf}
 
+Drugi graf sem naredila iz svoje tabele. Prikazuje pa število držav razvrščenih v skupine po deležu uporabnikov interneta med leti 2000-2014. Iz te tabele se lepo vidi, kako število držav, v katerih ima manjši delež prebivalcev dostop do interneta pada, število držav z višjim deležem uporabnikov interneta pa narašča.
+S to tabelo sem imela kar veliko težav saj nisem vedela, da moram funkciji barplot, tabelo podat kot \verb|as.matrix|.
+\includegraphics[width=\textwidth]{../slike/graf2.pdf}
 
-\\ Iz tabel sem narisala grafe, ki prikazujejo...
+Tretji graf prikazuje naraščanje števila uporabnikov interneta med leti 2000-2014. Narejen je s funkcijo \verb|qplot|, ki ima res ogromno možnosti prikaza podatkov, vendar še nisem osvojila v kakšni obliki moram podat podatke. 
+\includegraphics[width=\textwidth]{../slike/graf3.pdf}
 
-Na koncu sem grafe izvozila v pdf datoteki:
+Četrti graf sem naredila iz četrte tabele. Narisala sem ga s pomočjo funkcije \verb|3Dpie|, prikazuje pa delež uporabnikov interneta v letu 2014 po posameznih kontinentih.
+\includegraphics[width=\textwidth]{../slike/graf4.pdf}
+
+\newpage
 
 
 \section{Analiza in vizualizacija podatkov}
-V tretji fazi sem podatke uvožene v drugi fazi prikazala na zemljevidu, zato sem v R uvozila zemljevid sveta v obliki shp.
- \\
-\includegraphics{../slike/povprecna_druzina.pdf}
+V tretji fazi sem uvozila zemljevid sveta v obliki shp iz te spletne strani \href{http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip}{Natural Earth Data}. Nato sem morala preuredit tabele, da sem jih lahko uporabila za risanje zemljevida. Funkcija \verb|preuredi| zaradi prevelikih razlik ni delovala, tako da sem morala imena tabel spremeniti in nato uporabiti funkcijo \verb|match| (ob pomoči asistenta). Pri risanju zemljevida mi je funkcija \verb|spplot| ves čas povzročala težave, tako da so(zaenkrat) vsi zemljevidi narisani s funkcijo \verb|plot|. 
 
+Prvi zemljevid je sestavljen iz 3 zemljevidov, ki prikazujejo delež uporabnikov interneta v letih 2000, 2007 in 2014. Iz njih se lepo vidi naraščanje števila uporabnikov.
+\begin{sidewaysfigure}[ht]
+  \includegraphics[width=\textwidth]{../slike/zemljevid1.pdf}
+\end{sidewaysfigure}
+
+Na drugem zemljevidu sem uporabila podatke o deležu uporabnikov interneta v letu 2014, na prvem sem z belimi pikami označila države, ki spadajo v \"High income group \" iz njega je lepo razvidno, da se to večinoma ujema z višjim deležem uporabnikov interneta, med tem ko sem na drugem zemljevidu z rdečimi pikami označila države z nižjim deležem uporabnikov interneta.
+\begin{sidewaysfigure}[ht]
+  \includegraphics[width=\textwidth]{../slike/zemljevid2.pdf}
+\end{sidewaysfigure}
+
+Na tretjem zemljevidu, ki je prav tako sestavljen iz dveh delov, sem pa želela primerjat če je kakšna povezava med višjo pričakovano življenjsko dobo ter višjim deležem uporabnikov interneta. Podatki so iz leta 2011.
+\begin{sidewaysfigure}[ht]
+  \includegraphics[width=\textwidth]{../slike/zemljevid3.pdf}
+\end{sidewaysfigure}
+
+Na četrtem zemljevidu je pa vidna primerjava med višino GDP pc ter deležem uporabnikov interneta.
+\begin{sidewaysfigure}[ht]
+  \includegraphics[width=\textwidth]{../slike/zemljevid4.pdf}
+\end{sidewaysfigure}
+
+\newpage
 \section{Napredna analiza podatkov}
 
-\includegraphics{../slike/naselja.pdf}
 
 \end{document}
+
+
+
+
+
+
+
+
+

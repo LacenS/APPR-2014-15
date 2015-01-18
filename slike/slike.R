@@ -37,7 +37,7 @@ tretji_graf <- function(){
   dr<-data.frame(t3)
   print(qplot(rownames(dr),dr$Penetration....of.population.with.Internet.,
               data=dr, ylab=NULL, xlab=NULL, 
-              main="Penetration (% of population with Internet)")
+              main="Delez uporabnikov interneta med 2000-2014")
         + theme(axis.text.x = element_text(size = 5)))
   
 }
