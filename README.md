@@ -4,13 +4,20 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 
 ## Tematika
 
-Delež uporabnikov interneta po državah v letu 2014 v primerjavu z razvitostjo države.
-Podatke bom dobila : http://www.internetlivestats.com/internet-users-by-country/
-http://en.wikipedia.org/wiki/Global_Internet_usage
-http://data.worldbank.org/indicator/IT.NET.USER.P2
-http://www.internetlivestats.com/internet-users/#sources
+Analiza deleža uporabnikov interneta po svetu.
 
-analizirala bom...
+Primerjala bom spreminjanje deleža uporabnikov interneta po posameznih državah skozi leta, te podatke bom prikazala na zemljevidu sveta. Poskušala bom tudi najti povezavo med višjim deležem uporabnikov interneta, višjo pričakovano življenjsko dobo ter višjim GDP pc v posamezni državi.
+
+Podatke sem pridobila iz naslednjih spletnih strani:
+/- http://data.worldbank.org/indicator/IT.NET.USER.P2
+/- http://www.internetlivestats.com/internet-users-by-country/
+/- http://www.internetlivestats.com/internet-users/#trend
+/- http://www.internetworldstats.com/stats.htm
+/- http://www.nationmaster.com/country-info/stats/Health/Life-expectancy-at-birth%2C-total/Years#map
+/- http://databank.worldbank.org/data/views/reports/tableview.aspx?isshared=true
+/- http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip
+
+
 
 ## Program
 
