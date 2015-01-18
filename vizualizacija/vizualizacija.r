@@ -156,7 +156,7 @@ k <- kmeans(imf.norm, 10, nstart = 1000)
 t6 <- data.frame(t6)
 drzave <- t6$Country
 m <- match(svet$name_long, drzave)
-bar <- c(brewer.pal(9,"Greens"), "darkgreen")
+bar <- rev(c(brewer.pal(9,"Greens"), "darkgreen"))
 plot(svet, col = ifelse(is.na(m), "white", bar[k$cluster[t6$Country[m]]]))
 #tukaj tudi ne prikaze podatkov o Usa
 
