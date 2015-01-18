@@ -148,13 +148,25 @@ dev.off()
 #        sp.layout = list(arrow), as.table = TRUE)
 
 
-
-
 #se zemljevid glede na visino gdp v letu 2013
-# rrt <- nc$SID74/nc$BIR74
-# brks <- quantile(rrt, seq(0,1,1/10)) #bom razdelila v 10 kategorij
-# cols <- grey((length(brks):2)/length(brks))
-# dens <- (2:length(brks))*3
+cat("Rišem zemljevid gdp pc v letu 2013. \n")
+pdf("slike/zemljevid4.pdf", width=6, height=4)
+imf.norm <- scale(t6["X2013"][!is.na(t6["X2013"])])
+k <- kmeans(imf.norm, 10, nstart = 1000)
+t6 <- data.frame(t6)
+drzave <- t6$Country
+m <- match(svet$name_long, drzave)
+bar <- c(brewer.pal(9,"Greens"), "darkgreen")
+plot(svet, col = ifelse(is.na(m), "white", bar[k$cluster[t6$Country[m]]]))
+#tukaj tudi ne prikaze podatkov o Usa
+
+title("GDP v letu 2013", 
+      cex.main = 2,   font.main= 3, col.main= "black")
+legend("bottom", kategorije, fill = bar,
+       border = "black", cex=.42, xjust=0.5, horiz=TRUE)
+
+
+dev.off()
 
 
 
