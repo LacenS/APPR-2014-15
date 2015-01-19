@@ -7,6 +7,7 @@ source("lib/uvozi.zemljevid.r")
 library(maptools)
 library(RColorBrewer)
 library(classInt)
+library(extrafont)
 
 # Uvozimo zemljevid s pomo??jo funkcije uvozi zemljevid
 cat("Uvažam zemljevid sveta...\n")
@@ -116,7 +117,7 @@ dev.off()
 cat("Rišem zemljevid deleža uporabnikov interneta po svetu v letu 2014,\n z označenimi državami, ki spadajo v \"high ali low income group\". \n")
 cairo_pdf("slike/zemljevid2.pdf", width = 6, height = 4, family = "Arial")
 plot(svet, col = barve3)
-title("Uporabniki interneta v letu 2014 \n z označenimi dr?avami, ki spadajo v \"High income group\" in
+title("Uporabniki interneta v letu 2014 \n z označenimi državami, ki spadajo v \"High income group\" in
       \"Low income group\"", cex.main = .5, font.main = 2, col.main = "black")
 drzave1 <- which(svet$income_grp == "1. High income: OECD" | svet$income_grp == "2. High income: nonOECD")
 drzave2 <- which(svet$income_grp == "5. Low income")
@@ -127,9 +128,10 @@ legend(x = "topleft", legend = c("High income","Low income"),
         pch = c(19, 19), cex = .45)
 points(coordinates(svet[drzave1, ]), pch = 20, col = "gold", cex = .3)
 points(coordinates(svet[drzave2, ]), pch = 20, col = "deeppink", cex = .3) 
+dev.off()
 
 # 3 zemljevid: primerjava pri??akovane ?ivljenjske dobe in dele?a uporabnikov v letu 2011
-cat("Rišem zemljevid dele?a uporabnikov interneta po svetu v letu 2011 \n v primerjavi s pričakovano življenjsko dobo. \n")
+cat("Rišem zemljevid deleža uporabnikov interneta po svetu v letu 2011 \n v primerjavi s pričakovano življenjsko dobo. \n")
 cairo_pdf("slike/zemljevid3.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 par(mar = rep(2, 4))
 plot(svet, col = barve11)
