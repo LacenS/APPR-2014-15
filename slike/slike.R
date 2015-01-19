@@ -5,6 +5,7 @@ library(ggplot2)
 library(plotrix)
 library(extrafont)
 source("fontconfig.r")
+library("RColorBrewer")
 
 
 # 1 graf prikazuje prvih 10 drzav iz 2. tabele
