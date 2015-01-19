@@ -2,6 +2,7 @@
 
 # Uvozimo funkcijo za pobiranje in uvoz zemljevida.
 source("lib/uvozi.zemljevid.r")
+source("fontconfig.r")
 
 #Nalo?imo pakete, ki jih bomo potrebovali
 library(maptools)

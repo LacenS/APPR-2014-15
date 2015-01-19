@@ -24,16 +24,23 @@ Analiza podatkov s programom R}
 
 \section{Izbira teme}
 
-Tema mojega projekta je spreminjanje deleža uporabnikov interneta skozi leta po posameznih državah, v svetovnem okvirju ter kakšno je bilo stanje leta 2014. Iz izbranih podatkov bom poskušala poiskat povezavo med  GDPpc v posamezni državi ter deležem uporabnikov interneta in če delež uporabnikov interneta vpliva na pričakovano življenjsko dobo.
-\\ Cilj tega projekta je spoznavanje programa R skozi analizo podatkov.
+Tema mojega projekta je spreminjanje deleža uporabnikov interneta skozi leta po posameznih državah in v svetovnem okvirju. Iz izbranih podatkov bom poskušala poiskat povezavo med  GDPpc, pričakovano življenjsko dobo ter deležem uporabnikov interneta. 
+
+\bigskip 
+Cilj projekta je spoznavanje programa R skozi analizo podatkov.
 
 
 
 \section{Obdelava, uvoz in čiščenje podatkov}
 
-V svoj program sem uvozila 3 tabele  v obliki \verb|.csv| ter 4 iz spletnih strani. Tu mi je največ težav povzročalo to, da R zelo striktno ločuje tipe podatkov\-(\verb|matrika, data.frame...| in da sem ugotovila s kakimi tabelami delam. Veliko časa sem tudi porabila, da sem preimenovala stolpce in vrstice, kar se je v kasnejših fazah, sploh pri številskih označbah(na primer za posamezna leta) izkazalo za slabo potezo, saj je pri uporabi podatkov iz tabel pomembno, da stolpci in vrstice nimajo številskih imen. Več o uvozu posamezne tabele je v datoteki \verb|uvoz/uvoz.r| v komentarjih. V kasnejši fazi se je tudi izkazalo, da je bila tabela 5 nepotrebna saj so bili podatki iz te tabele, že vključeni v zemljevid sveta.
-\\ Nekaj tabel sem v R-ju zaradi kasnejše analize sestavila sama s pomočjo uvoženih datotek.
+V svoj program sem uvozila 3 tabele  v obliki \verb|.csv| ter 4 iz spletnih strani. Tu mi je največ težav povzročalo to, da R striktno ločuje tipe podatkov\-(\verb|matrika, data.frame...|) in da sem ugotovila s kakimi tabelami delam. Veliko časa sem tudi porabila, da sem preimenovala stolpce in vrstice. To se je v kasnejših fazah, sploh pri številskih označbah(na primer za posamezna leta) izkazalo za slabo potezo, saj je pri uporabi podatkov iz tabel pomembno, da stolpci in vrstice nimajo številskih imen. 
 
+Več o uvozu posamezne tabele je še v datoteki \verb|uvoz/uvoz.r| v komentarjih. 
+
+\smallskip
+Nekaj tabel sem v R-ju zaradi kasnejše analize sestavila sama s pomočjo uvoženih datotek.
+
+\bigskip
 Podatke sem pridobila iz naslednjih spletnih strani:
 \begin{itemize} 
 \item \url{http://data.worldbank.org/indicator/IT.NET.USER.P2}
@@ -41,20 +48,23 @@ Podatke sem pridobila iz naslednjih spletnih strani:
 \item \url{http://www.internetlivestats.com/internet-users/#trend}
 \item \url{http://www.internetworldstats.com/stats.htm}
 \item \url{http://databank.worldbank.org/data/views/reports/tableview.aspx?isshared=true}
-\item svn co \burl{http://www.nationmaster.com/country-info/stats/Health/Life-expectancy-at-birth%2C-total/Years#map}
+\item \burl{http://www.nationmaster.com/country-info/stats/Health/Life-expectancy-at-birth%2C-total/Years#map}
 
 \end {itemize}
 
+\bigskip
 Iz tabel sem nato narisala grafe. Ta del se mi zdi najbolj zahteven saj obstaja ogromno funkcij za risanje tabel in vsaka ima svoje specifike v kakšni obliki moraš podat podatke.
 
-\-
-Prvi graf je stolpični in prikazuje prvih 10 držav, ki predstavljajo največji delež uporabnikov interneta po svetu. Prvi stolpec prikazuje kolikšen delež prebivalcev ima dostop do interneta, drugi pa kolikšen delež uporabnikov interneta predstavljajo. Tu se mi je zdelo najbolj zanimivo, da recimo Kitajci predstavljajo več kot 20 \% vseh uporabnikov interneta, med tem, ko jih ima manj kot 50 \% dostop do interneta.
+\bigskip
+Prvi graf je stolpični in prikazuje prvih 10 držav, ki predstavljajo največji delež uporabnikov interneta po svetu. Prvi stolpec prikazuje kolikšen delež prebivalcev ima dostop do interneta, drugi pa kolikšen delež uporabnikov interneta predstavljajo.
 
-\includepdf[pages={1}, scale=.8]{../slike/graf1.pdf}
+Tu se mi je zdelo najbolj zanimivo, da recimo Kitajci predstavljajo več kot 20 \% vseh uporabnikov interneta, med tem, ko jih ima manj kot 50 \% dostop do interneta.
+
+\includepdf[pages={1}, scale=.7]{../slike/graf1.pdf}
 
 \newpage
 Drugi graf sem naredila iz svoje tabele. Prikazuje pa število držav razvrščenih v skupine po deležu uporabnikov interneta med leti 2000-2014. Iz te tabele se lepo vidi, kako število držav, v katerih ima manjši delež prebivalcev dostop do interneta pada, število držav z višjim deležem uporabnikov interneta pa narašča.
-S to tabelo sem imela kar veliko težav saj nisem vedela, da moram funkciji barplot, tabelo podat kot \verb|as.matrix|.
+S to tabelo sem imela kar veliko težav saj nisem vedela, da moram funkciji \verb|barplot|, tabelo podat kot \verb|as.matrix|.
 
 \includegraphics[width=\textwidth]{../slike/graf2.pdf}
 
@@ -72,7 +82,7 @@ Tretji graf prikazuje naraščanje števila uporabnikov interneta med leti 2000-
 
 
 \section{Analiza in vizualizacija podatkov}
-V tretji fazi sem uvozila zemljevid sveta v obliki shp iz te spletne strani \href{http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip}{Natural Earth Data}. Nato sem morala preuredit tabele, da sem jih lahko uporabila za risanje zemljevida. Funkcija \verb|preuredi| zaradi prevelikih razlik ni delovala, tako da sem morala imena tabel spremeniti in nato uporabiti funkcijo \verb|match| (ob pomoči asistenta). Pri risanju zemljevida mi je funkcija \verb|spplot| ves čas povzročala težave, tako da so(zaenkrat) vsi zemljevidi narisani s funkcijo \verb|plot|. 
+V tretji fazi sem uvozila zemljevid sveta v obliki shp iz spletne strani \href{http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip}{Natural Earth Data}. Nato sem morala preuredit tabele, da sem jih lahko uporabila za risanje zemljevida. Funkcija \verb|preuredi| zaradi prevelikih razlik ni delovala, tako da sem morala imena tabel spremeniti in nato uporabiti funkcijo \verb|match| (ob pomoči asistenta). Pri risanju zemljevida mi je funkcija \verb|spplot| ves čas povzročala težave, tako da so(zaenkrat) vsi zemljevidi narisani s funkcijo \verb|plot|. 
 
 Prvi zemljevid je sestavljen iz 3 zemljevidov, ki prikazujejo delež uporabnikov interneta v letih 2000, 2007 in 2014. Iz njih se lepo vidi naraščanje števila uporabnikov.
 
@@ -86,7 +96,7 @@ Prvi zemljevid je sestavljen iz 3 zemljevidov, ki prikazujejo delež uporabnikov
 
 \newpage
 
-Na drugem zemljevidu sem uporabila podatke o deležu uporabnikov interneta v letu 2014, na prvem sem z belimi pikami označila države, ki spadajo v \"High income group \" iz njega je lepo razvidno, da se to večinoma ujema z višjim deležem uporabnikov interneta, med tem ko sem na drugem zemljevidu z rdečimi pikami označila države z nižjim deležem uporabnikov interneta.
+Na drugem zemljevidu sem uporabila podatke o deležu uporabnikov interneta v letu 2014, na prvem sem z rumenimi pikami označila države, ki spadajo v " High income group ", z roza pa države, ki spadajo v " Low income group ". Iz zemljevida je razvidno, da so rumene pike na območjih z višjim deležem uporabnikov interneta, med tem, ko so roza pike večinoma v državah z nižjim procentom uporabnikov interneta.
 
 
 \begin{figure}[h!] 
@@ -97,7 +107,7 @@ Na drugem zemljevidu sem uporabila podatke o deležu uporabnikov interneta v let
 
 \newpage
 
-Na tretjem zemljevidu, ki je prav tako sestavljen iz dveh delov, sem pa želela primerjat če je kakšna povezava med višjo pričakovano življenjsko dobo ter višjim deležem uporabnikov interneta. Podatki so iz leta 2011. \\
+Na tretjem zemljevidu, ki je prav tako sestavljen iz dveh delov, sem  želela primerjat če je kakšna povezava med višjo pričakovano življenjsko dobo ter višjim deležem uporabnikov interneta. Podatki so iz leta 2011. \\
 
 \begin{figure}[h!]
 \begin{center}
