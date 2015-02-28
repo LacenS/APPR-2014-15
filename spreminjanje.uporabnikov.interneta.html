@@ -19,9 +19,9 @@
 
 	<div class="scianimator"><div id="spreminjanje_uporabnikov_interneta" style="display: inline-block;"></div></div>
 	<div class="scianimator" style="width: 900px; text-align: left"><pre><code class="r">## Animacija spreminjanja deleza uporabnikov interneta med leti 2000-2014
+library(psych)
 library(classInt)
 library(maptools)
-library(sp)
 library(RColorBrewer)
 library(extrafont)
 library(plotrix)
@@ -30,102 +30,103 @@ library(spacetime)
 library(zoo)
 library(XML)
 library(animation)
+library(sp)
 dev.control("enable")
 par(bg = "white")
 plot(svet, col = barve00)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2000", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve01)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2001", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve02)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2002", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve03)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2003", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve04)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2004", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve05)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2005", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve06)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2006", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve07)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2007", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve08)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2008", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve09)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2009", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve10)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2010", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve11)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2011", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve12)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2012", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve13)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2013", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 plot(svet, col = barve14)
 legend("bottom", kategorije, fill = vektor, border = "black", 
-    cex = 0.42, xjust = 0.5, horiz = TRUE)
+    cex = 0.9, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2014", cex.main = 1.5, 
     font.main = 2.5, col.main = "black")
 ani.record()
 ## R version 3.1.2 (2014-10-31)
 ## Platform: x86_64-apple-darwin10.8.0 (64-bit)
-## Other packages: classInt 0.1-22, maptools 0.8-30, sp 1.0-17, RColorBrewer 1.1-2, extrafont 0.17,
-## plotrix 3.5-10, ggplot2 1.0.0, spacetime 1.1-1, zoo 1.7-11, XML 3.98-1.1, animation 2.3</code></pre></div>
+## Other packages: psych 1.5.1, classInt 0.1-22, maptools 0.8-30, RColorBrewer 1.1-2, extrafont 0.17,
+## plotrix 3.5-10, ggplot2 1.0.0, spacetime 1.1-1, zoo 1.7-11, XML 3.98-1.1, animation 2.3, sp 1.0-17</code></pre></div>
 	<script src="js/spreminjanje.uporabnikov.interneta.js"></script>
 <!-- highlight R code -->
 

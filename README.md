@@ -37,4 +37,6 @@ viri so v mapi `podatki/`. Slike, ki jih program naredi, se shranijo v mapo
 
 Poročilo se nahaja v mapi `porocilo/`. Za izdelavo poročila v obliki PDF je
 potrebno datoteko `porocilo/porocilo.tex` prevesti z LaTeXom. Pred tem je
-potrebno pognati program, saj so v poročilu vključene slike iz mape `slike/`.
+potrebno pognati program("projekt.r"), saj so v poročilu vključene slike iz mape `slike/`.
+Ko poženete program se vam odpre spletna stran z animacijo, več o tej animaciji je napisano v poročilu.
+

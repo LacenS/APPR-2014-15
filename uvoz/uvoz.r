@@ -51,7 +51,7 @@ uvoz_tabele2 <- function(){
 cat("Uvažam podatke o številu uporabnikov interneta po posameznih državah v letu 2014 v primerjavi z deležem svetovne populacije.\n")
 
 
-#3 tabela prikazuje število uporabnike interneta prebivalstva med leti 1993-2014
+#3 tabela prikazuje število uporabnikov interneta prebivalstva med leti 1993-2014
 uvoz_tabele3 <- function(){
   u <- "http://www.internetlivestats.com/internet-users/#trend" 
   tables <- readHTMLTable(u)
@@ -109,10 +109,10 @@ cat("Uvažam podatke o uporabnikih interneta po geografskih regijah-kontinentih.
 uvoz_tabele6 <- function() {
   t6 <- read.csv("podatki/gdp.pc.st.csv", skip = 1, fileEncoding = "Windows-1252")
   t6 <- t6[, c(1, 45 :58)] # da imam podatke samo od 200-2013 (2014 so tako samo "NA-ji")
-  t6 <- data.frame(Country = t6$Country.Name,
+  t6 <- data.frame(row.names = t6$Country.Name,
                      apply(t6[2:length(colnames(t6))], 2, function(x) { if (is.numeric(x)){round(x, 2)}}))
-  stolpci <- gsub("[X]", "", colnames(t6))
-  colnames(t6) <- stolpci
+#   stolpci <- gsub("[X]", "", colnames(t6))
+#   colnames(t6) <- stolpci
   return(t6) 
 }
 cat("Uvažam podatke o GDP per capita po posameznih drzavah.\n")

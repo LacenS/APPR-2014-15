@@ -55,11 +55,13 @@ names(imena.t8) <- imena.t8
 
 # Iz tabel t1, t2 in t8 naredimo nove tabele v katerih se vrstni red podatkov ujema s podatki iz zemljevida
 m1 <- match(imena.svet, rownames(t1))
-m2 <- match(as.character(svet$name_long), imena.t2)
+m2 <- match(imena.svet, imena.t2)
 m3 <- match(imena.svet, rownames(t8))
 tab1 <- data.frame(t1[m1,])
 tab2 <- data.frame(t2[m2,])
 tab3 <- data.frame(t8[m3,])
+m4 <- match(imena.svet, rownames(t6))
+tab6 <- data.frame(t6[m4,])
 
 # Dodamo stolpce s podatki v zemljevid
 svet$X2000 <- tab1$X2000
@@ -76,8 +78,22 @@ svet$X2010 <- tab1$X2010
 svet$X2011 <- tab1$X2011
 svet$X2012 <- tab1$X2012
 svet$X2013 <- tab1$X2013
-svet$X2014 <- tab2$Penetration....of.Pop..with.Internet.
+svet$X2014 <- tab2[,7]
 svet$leta <- as.numeric(levels(tab3$t8.m3...)[tab3$t8.m3...])
+svet$gdp2000 <- tab6$X2000
+svet$gdp2001 <- tab6$X2001
+svet$gdp2002 <- tab6$X2002
+svet$gdp2003 <- tab6$X2003
+svet$gdp2004 <- tab6$X2004
+svet$gdp2005 <- tab6$X2005
+svet$gdp2006 <- tab6$X2006
+svet$gdp2007 <- tab6$X2007
+svet$gdp2008 <- tab6$X2008
+svet$gdp2009 <- tab6$X2009
+svet$gdp2010 <- tab6$X2010
+svet$gdp2011 <- tab6$X2011
+svet$gdp2012 <- tab6$X2012
+svet$gdp2013 <- tab6$X2013
 
 
 # Vektorji barv, da lahko ustrezno pobarvam zemljevide
@@ -124,6 +140,11 @@ barve_leta[which(svet$leta >= 75 & svet$leta < 80)] <- vektor2[7]
 barve_leta[which(svet$leta >= 80)] <- vektor2[8]
 kategorije <- c("0-10 %", "10-20 %", "20-30 %", "30-40 %", "40-50 %", 
                 "50-60 %", "60-70 %", "70-80 %", "80-90 %", "90-100 %")
+#za zemljevid gdp
+vek<-as.numeric(cut(svet$gdp2013, 10))
+bar <- rev(c(brewer.pal(9,"Greens"), "darkgreen"))
+barvegdp13 <-ifelse(is.na(vek), "white", bar[vek])
+
 
  #1. zemljevid glede na leto 2000, 2007, 2014
 cat("Rišem zemljevid deleža uporabnikov interneta po svetu v letu 2000, 2007, 2014. \n")
@@ -182,24 +203,18 @@ legend("bottom", c("45-50", "50-55", "55-60", "60-65","65-70", "75-80", "80-85")
 dev.off()
 
 #se zemljevid glede na visino gdp v letu 2013
+#drzave bom enakomerno razporedila v 10 skupin glede na visino gdp, tako da bo v vsaki skupini enako stevilo drzav
 #ni se dokoncan!!!..ni prav obarvano, legenda se ni izdelana...!!!!
 cat("Rišem zemljevid gdp pc v letu 2013. \n")
 cairo_pdf("slike/zemljevid4.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 par(mar = rep(2, 4))
-t6<-data.frame(t6)
-imf.norm <- scale(t6["X2013"][!is.na(t6["X2013"])])
-k <- kmeans(imf.norm, 10, nstart = 1000)
-t6 <- data.frame(t6)
-drzave <- t6$Country
-m <- match(svet$name_long, drzave)
-bar <- rev(c(brewer.pal(9,"Greens"), "darkgreen"))
-plot(svet, col = ifelse(is.na(m), "white", bar[k$cluster[t6$Country[m]]]))
+plot(svet, col = barvegdp13)
 #tukaj ne prikaze podatkov o USA
 title("GDPpc v letu 2013", 
       cex.main = 2,   font.main= 3, col.main= "black")
-legend("bottom", kategorije, fill = bar,
+legend("bottom", kategorije, fill = vek,
        border = "black", cex=.42, xjust=0.5, horiz=TRUE)
-plot(svet, col=barve3)
+plot(svet, col=barve14)
 legend("bottom",kategorije, fill = vektor,
        border = "black", cex=.42, xjust=0.5, horiz=TRUE)
 title("Delež uporabnikov interneta v letu 2014", cex.main = 1.5,   font.main= 2, col.main= "black")
