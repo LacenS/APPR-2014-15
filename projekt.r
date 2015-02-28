@@ -10,6 +10,5 @@ source("slike/slike.R", encoding = "UTF-8")
 source("vizualizacija/vizualizacija.r")
 
 # # 4. faza: Napredna analiza podatkov
-# source("analiza/analiza.r")
-# 
+source("analiza/analiza.r")
 # cat("Končano.\n")

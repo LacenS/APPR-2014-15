@@ -63,8 +63,19 @@ tab3 <- data.frame(t8[m3,])
 
 # Dodamo stolpce s podatki v zemljevid
 svet$X2000 <- tab1$X2000
+svet$X2001 <- tab1$X2001
+svet$X2002 <- tab1$X2002
+svet$X2003 <- tab1$X2003
+svet$X2004 <- tab1$X2004
+svet$X2005 <- tab1$X2005
+svet$X2006 <- tab1$X2006
 svet$X2007 <- tab1$X2007
+svet$X2008 <- tab1$X2008
+svet$X2009 <- tab1$X2009
+svet$X2010 <- tab1$X2010
 svet$X2011 <- tab1$X2011
+svet$X2012 <- tab1$X2012
+svet$X2013 <- tab1$X2013
 svet$X2014 <- tab2$Penetration....of.Pop..with.Internet.
 svet$leta <- as.numeric(levels(tab3$t8.m3...)[tab3$t8.m3...])
 
@@ -72,14 +83,36 @@ svet$leta <- as.numeric(levels(tab3$t8.m3...)[tab3$t8.m3...])
 # Vektorji barv, da lahko ustrezno pobarvam zemljevide
 vektor <- c(brewer.pal(9, "Blues"), "black")
 vektor2 <- brewer.pal(8, "BuPu")
-barve <- ifelse(is.na(svet$X2000), "white", "black")
-barve <- vektor[floor(svet$X2000/10) + 1]
-barve2 <- ifelse(is.na(svet$X2007), "white", "black")
-barve2 <- vektor[floor(svet$X2007/10) + 1]
-barve3 <- ifelse(is.na(svet$X2014), "white", "black")
-barve3 <- vektor[floor(svet$X2014/10) + 1]
+barve00 <- ifelse(is.na(svet$X2000), "white", "black")
+barve00 <- vektor[floor(svet$X2000/10) + 1]
+barve01 <- ifelse(is.na(svet$X2001), "white", "black")
+barve01 <- vektor[floor(svet$X2001/10) + 1]
+barve02 <- ifelse(is.na(svet$X2002), "white", "black")
+barve02 <- vektor[floor(svet$X2002/10) + 1]
+barve03 <- ifelse(is.na(svet$X2003), "white", "black")
+barve03 <- vektor[floor(svet$X2003/10) + 1]
+barve04 <- ifelse(is.na(svet$X2004), "white", "black")
+barve04 <- vektor[floor(svet$X2004/10) + 1]
+barve05 <- ifelse(is.na(svet$X2005), "white", "black")
+barve05 <- vektor[floor(svet$X2005/10) + 1]
+barve06 <- ifelse(is.na(svet$X2006), "white", "black")
+barve06 <- vektor[floor(svet$X2006/10) + 1]
+barve07 <- ifelse(is.na(svet$X2007), "white", "black")
+barve07 <- vektor[floor(svet$X2007/10) + 1]
+barve08 <- ifelse(is.na(svet$X2008), "white", "black")
+barve08 <- vektor[floor(svet$X2008/10) + 1]
+barve09 <- ifelse(is.na(svet$X2009), "white", "black")
+barve09 <- vektor[floor(svet$X2009/10) + 1]
+barve10 <- ifelse(is.na(svet$X2010), "white", "black")
+barve10 <- vektor[floor(svet$X2010/10) + 1]
 barve11 <- ifelse(is.na(svet$X2011), "white", "black")
 barve11 <- vektor[floor(svet$X2011/10) + 1]
+barve12 <- ifelse(is.na(svet$X2012), "white", "black")
+barve12 <- vektor[floor(svet$X2012/10) + 1]
+barve13 <- ifelse(is.na(svet$X2013), "white", "black")
+barve13 <- vektor[floor(svet$X2013/10) + 1]
+barve14 <- ifelse(is.na(svet$X2014), "white", "black")
+barve14 <- vektor[floor(svet$X2014/10) + 1]
 barve_leta <- ifelse(is.na(svet$leta), "white", "black")
 barve_leta[which(svet$leta >= 45 & svet$leta < 50)] <- vektor2[1]
 barve_leta[which(svet$leta >= 50 & svet$leta < 55)] <- vektor2[2]
@@ -96,17 +129,17 @@ kategorije <- c("0-10 %", "10-20 %", "20-30 %", "30-40 %", "40-50 %",
 cat("Rišem zemljevid deleža uporabnikov interneta po svetu v letu 2000, 2007, 2014. \n")
 cairo_pdf("slike/zemljevid1.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 par(mar = rep(2, 4))
-plot(svet, col = barve)
+plot(svet, col = barve00)
 legend("bottom", kategorije, fill = vektor,
        border = "black", cex = .42, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2000", 
       cex.main = 1.5,   font.main = 2.5, col.main = "black")
-plot(svet, col = barve2)
+plot(svet, col = barve07)
 title("Delež uporabnikov interneta v letu 2007", 
       cex.main = 1.5, font.main = 2.5, col.main = "black")
 legend("bottom", kategorije, fill = vektor,
        border = "black", cex = .42, xjust = 0.5, horiz = TRUE)
-plot(svet, col = barve3)
+plot(svet, col = barve14)
 legend("bottom", kategorije, fill = vektor,
        border = "black", cex = .42, xjust = 0.5, horiz = TRUE)
 title("Delež uporabnikov interneta v letu 2014", cex.main = 1.5,   font.main = 2.5, col.main=  "black")
@@ -117,7 +150,7 @@ dev.off()
 # Na zemljevidu za 2014 bom oznacila drzave, ki spadajo v high income group ter low income group.
 cat("Rišem zemljevid deleža uporabnikov interneta po svetu v letu 2014,\n z označenimi državami, ki spadajo v \"high ali low income group\". \n")
 cairo_pdf("slike/zemljevid2.pdf", width = 6, height = 4, family = "Arial")
-plot(svet, col = barve3)
+plot(svet, col = barve14)
 title("Uporabniki interneta v letu 2014 \n z označenimi državami, ki spadajo v \"High income group\" in
       \"Low income group\"", cex.main = .5, font.main = 2, col.main = "black")
 drzave1 <- which(svet$income_grp == "1. High income: OECD" | svet$income_grp == "2. High income: nonOECD")
