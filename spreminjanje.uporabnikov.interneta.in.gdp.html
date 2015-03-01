@@ -19,6 +19,8 @@
 
 	<div class="scianimator"><div id="spreminjanje_uporabnikov_interneta_in_gdp" style="display: inline-block;"></div></div>
 	<div class="scianimator" style="width: 900px; text-align: left"><pre><code class="r">## Animacija spreminjanja deleza uporabnikov interneta v primerjavi s spreminjanjem gdp pc med leti 2000-2013.
+library(forecast)
+library(timeDate)
 library(gridExtra)
 library(latticeExtra)
 library(lattice)
@@ -206,9 +208,9 @@ title("Višina gdp pc v letu 2013", cex.main = 1.5, font.main = 2.5,
 ani.record()
 ## R version 3.1.2 (2014-10-31)
 ## Platform: x86_64-apple-darwin10.8.0 (64-bit)
-## Other packages: gridExtra 0.9.1, latticeExtra 0.6-26, lattice 0.20-29, psych 1.5.1, classInt 0.1-22,
-## maptools 0.8-30, RColorBrewer 1.1-2, extrafont 0.17, plotrix 3.5-10, ggplot2 1.0.0, spacetime 1.1-1,
-## zoo 1.7-11, XML 3.98-1.1, animation 2.3, sp 1.0-17</code></pre></div>
+## Other packages: forecast 5.9, timeDate 3012.100, gridExtra 0.9.1, latticeExtra 0.6-26, lattice
+## 0.20-29, psych 1.5.1, classInt 0.1-22, maptools 0.8-30, RColorBrewer 1.1-2, extrafont 0.17, plotrix
+## 3.5-10, ggplot2 1.0.0, spacetime 1.1-1, zoo 1.7-11, XML 3.98-1.1, animation 2.3, sp 1.0-17</code></pre></div>
 	<script src="js/spreminjanje.uporabnikov.interneta.in.gdp.js"></script>
 <!-- highlight R code -->
 

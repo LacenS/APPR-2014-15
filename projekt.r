@@ -11,4 +11,5 @@ source("vizualizacija/vizualizacija.r")
 
 # # 4. faza: Napredna analiza podatkov
 source("analiza/analiza.r")
-# cat("Končano.\n")
+source("analiza/animacija.R")
+cat("Končano.\n")

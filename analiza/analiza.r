@@ -1,148 +1,64 @@
 # 4. faza: Analiza podatkov
-
+source("vizualizacija/vizualizacija.r")
 library("animation")
+library("psych", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
+library("gridExtra", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
 
-# 1. animacija spreminjanja deleža uporabnikov interneta od leta 2000-2014
-cat("Rišem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2014")
-# ## record plots and replay immediately
-oopts = ani.options(interval = 2)
-ani.record(reset = TRUE) 
-saveHTML(autoplay=FALSE,{
-  dev.control("enable")  # enable recording
-  #   n = 14
-  #   x = sort(rnorm(n))
-  #   y = rnorm(n)
-  par(bg = "white")  # ensure the background color is white
-  plot(svet, col = barve00)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2000", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve01)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2001", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve02)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2002", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve03)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2003", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve04)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2004", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve05)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2005", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve06)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2006", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve07)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2007", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve08)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2008", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve09)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2009", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve10)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2010", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve11)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2011", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve12)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2012", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve13)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2013", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-  plot(svet, col = barve14)
-  legend("bottom", kategorije, fill = vektor,
-         border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
-  title("Delež uporabnikov interneta v letu 2014", 
-        cex.main = 1.5,   font.main = 2.5, col.main = "black")
-  ani.record()  
-},img.name = "spreminjanje.uporabnikov.interneta", htmlfile = "spreminjanje.uporabnikov.interneta.html",
-ani.height = 680, ani.width = 900, interval = 1,
-title = "Spreminjanje deleza uporabnikov interneta med leti 2000-2014.", 
-description = c("Animacija spreminjanja deleza uporabnikov interneta med leti 2000-2014")
-)
+# 2.) tabela z vsemi uporabnimi podatki zbranimi
+zdruzeno <- data.frame(svet[,c(19,c(64:93))])
+#podatki za slovenijo
+slovenija <- zdruzeno[205, ]
+slo<-data.frame(t(slovenija[,c(2:15)]), t(slovenija[,c(18:31)]))
+colnames(slo)<-c("internet", "gdp_pc")
+# Pri vseh drzavah bi dobili podobno, npr. za Slovenijo:
+attach(slo)
+cairo_pdf("slike/slo1.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
+plot(gdp_pc, internet, xlab="gdp pc v US$", ylab="Delež uporabnikov interneta")
+lin<-lm(internet~gdp_pc)
+abline(lin, col="blue")
+title("Primerjava naraščanja gdp pc ter uporabnikov interneta\n v Sloveniji med leti 2000-2013", 
+      cex.main = .9,  font.main = 2.5, col.main = "black")
+detach(slo)
+dev.off()
 
-ani.options(oopts)
+#vrstice z vsemi podatki
+nova<-zdruzeno[complete.cases(zdruzeno),]
+#sortirane po delezu uporabnikov od najmanjsega do najvecjega, glede na leto 2014
+order.2014 <- order(nova$X2014)
+nova2<-nova[order.2014, ]
+
+# 5 drzav z najmanjsim delezem uporabnikov, 5 s srednjim ter 5 z najvecjim
+povzetek <- nova2[c(1, 2, 3, 4, 5, 68, 69, 70, 71, 72, 137, 138, 139, 140, 141), ]
+
+# Graf za primerjavo med gdp v letu 2013, delezem uporabnikov ter pricakovano zivljenjsko dobo
+cairo_pdf("slike/pari1.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
+attach(povzetek)
+colnames(povzetek)[c(15,17,31)] <- c("Uporabniki interneta v letu 2013", "Pričakovana življenjska doba", "Gdp pc v letu 2013")
+skalar1 <- scale(povzetek[, c(15,17,31)])
+k <- kmeans(skalar1, 6, nstart=1000)
+kat <- k$cluster
+barve <- c("chocolate1", "green", "deepskyblue", "darkmagenta", "gold", "deeppink")
+pairs(skalar1, col = barve[kat])
+
+dev.off()
+detach(povzetek)
+
+# Povezava med gdp ter delezem uporabnikov interneta
+attach(nova2)
+cairo_pdf("slike/gdpinternet.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
+print(qplot(X2013, gdp2013, data = nova2, geom = c("point", "smooth"),
+            main = "Razmerje med gdp pc v US$ ter deležem uporabnikov interneta",
+            xlab = "Uporabniki interneta", ylab = "gdp pc v US$"))
+dev.off()
+
+# ter med pricakovano zivljenjsko dobo ter delezem uporabnikov interneta
+cairo_pdf("slike/letainternet.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
+print(qplot(X2011, leta, data = nova2, geom = c("point", "smooth"), 
+            main = "Razmerje med pričakovano življenjsko dobo ter deležem uporabnikov interneta",
+            xlab = "Uporabniki interneta"))
+detach(nova2)
+dev.off
 
 
 
 
-
-
-
-
-
-# 1. poskusala bom naredit graf za 5 drzav primerjava narascanja gdp cez leta ter narascanja up. interneta
-# 2. poskusala bom napovedat kako bo narascalo st uporabnikov, verjetno samo za dolocene drzave??..
-# recimo za slovenijo rabim tab1 in t6 pri t6 bi bilo dobro preuredit podatke...
-# plot(tab1[205,], t6[211,])
-#funkcija decompose
-##ramp <- colorRamp(c("blue", "white"))
-#vektor <- rgb( ramp(seq(0, 1, length = 10)), max = 255) ...za barve
-# za izlocitev vrstic z manjkajocimi podatki funkcija complete.cases()
-
-
-
-
-# # Uvozimo funkcijo za uvoz spletne strani.
-# source("lib/xml.r")
-# 
-# # Preberemo spletno stran v razpredelnico.
-# cat("Uvažam spletno stran...\n")
-# tabela <- preuredi(uvozi.obcine(), obcine)
-# 
-# # Narišemo graf v datoteko PDF.
-# cat("Rišem graf...\n")
-# pdf("slike/naselja.pdf", width=6, height=4)
-# plot(tabela[[1]], tabela[[4]],
-#      main = "Število naselij glede na površino občine",
-#      xlab = "Površina (km^2)",
-#      ylab = "Št. naselij")
-# dev.off()

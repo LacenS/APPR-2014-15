@@ -1,4 +1,5 @@
 # Vektorji barv, da lahko ustrezno pobarvam zemljevide
+#source("vizualizacija/vizualizacija.r")
 # 1.) Barve glede na uporabnike interneta
 vektor <- c(brewer.pal(9, "Blues"), "black")
 vektor2 <- brewer.pal(8, "BuPu")

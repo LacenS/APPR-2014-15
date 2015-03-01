@@ -3,14 +3,13 @@ library("psych", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources
 library("gridExtra", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
 
 # 1. animacija spreminjanja deleža uporabnikov interneta od leta 2000-2014
-cat("Rišem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2014")
-## record plots and replay immediately
+cat("Izdelujem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2014")
 #html verzija
-oopts = ani.options(interval = 2)
+oopts = ani.options(interval = 2, autobrowse = FALSE, outdir = "analiza")
 ani.record(reset = TRUE) 
 saveHTML(autoplay=FALSE,{
-  dev.control("enable")  # enable recording
-  par(bg = "white")  # ensure the background color is white
+  dev.control("enable")  #Omogoči "snemanje"
+  par(bg = "white")  #Zagotovi, da je ozadje belo
   plot(svet, col = barve00)
   legend("bottom", kategorije, fill = vektor,
          border = "black", cex = .9, xjust = 0.5, horiz = TRUE)
@@ -106,9 +105,9 @@ ani.height = 680, ani.width = 900, interval = 1,
 title = "Spreminjanje deleza uporabnikov interneta med leti 2000-2014.", 
 description = c("Animacija spreminjanja deleza uporabnikov interneta med leti 2000-2014")
 )
-ani.options(oopts)
+ani.options(oopts, autobrowse = FALSE)
 
-#pdf verzija, ki jo bom vkljucila v porocilo, vendar pri meni ne dela
+#pdf verzija, ki jo bom vkljucila v porocilo, vendar pri meni ne dela(os x op. sistem)
 cairo_pdf("slike/animacija.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 plot(svet, col = barve00)
 legend("bottom", kategorije, fill = vektor,
@@ -202,10 +201,12 @@ title("Delež uporabnikov interneta v letu 2014",
 dev.off()
 
 
+
+
 # 3.) primerjava spreminjanja gdp ter uporabnikov interneta na zemljevidu
-cat("Rišem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2013 \nv primerjavi s spreminjanjem gdp pc ")
+cat("Izdelujem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2013 \nv primerjavi s spreminjanjem gdp pc ")
 ani.record(reset = TRUE) 
-oopts2 = ani.options(interval = 4)
+oopts2 = ani.options(interval = 4, autobrowse = FALSE, outdir = "analiza")
 saveHTML(autoplay=FALSE,{
   dev.control("enable")  # enable recording
   par(bg = "white")  # ensure the background color is white

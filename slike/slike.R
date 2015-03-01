@@ -35,13 +35,17 @@ drugi_graf <- function() {
 }
 
 
-# Graf iz 3 tabele-nara???anje ?tevila uporabnikov...
+# Graf iz 3 tabele-naraščanje števila uporabnikov...
 tretji_graf <- function() {
-  dr <- data.frame(t3)
-  print(qplot(rownames(dr), dr$Penetration....of.population.with.Internet.,
-              data = dr, ylab = NULL, xlab = NULL, 
-              main = "Delež uporabnikov interneta med 2000-2014")
-        + theme(axis.text.x = element_text(size = 5)))
+#   dr <- data.frame(t3)
+#   print(qplot(rownames(dr), dr$Penetration....of.population.with.Internet.,
+#               data = dr, ylab = NULL, xlab = NULL, 
+#               main = "Delež uporabnikov interneta med 2000-2014")
+#         + theme(axis.text.x = element_text(size = 5)))
+  plot(rev(t3[,5]), type='l', lwd=2, col = 'black', main = "Delež uporabnikov interneta med 2000-2014",
+       xlab="Leta", ylab = "%", xaxt="n")
+
+  axis(1,at=seq(1993,2014,2),labels=rev(rownames(t3))[seq(1,22,2)])
 }
 
 # Pita iz tabele t4
@@ -51,13 +55,13 @@ cetrti_graf <- function() {
         col = brewer.pal(7, "Blues"), labelcex = 0.8, start = pi/2)
 }
 
-# Zapi?imo grafe v pdf v mapi slike
+# Zapišimo grafe v pdf v mapi slike
 cat("Ri?em stolpični graf:\nDele? populacije z internetom v primerjavi z deležem države v svetovnih uporabnikih interneta. \n")
 cairo_pdf("slike/graf1.pdf", family = "Arial")
 prvi_graf()
 dev.off()
 
-cat("Ri?em stolpični graf: \n število dr?av razvrščenih v skupine glede na dele? uporabnikov interneta po posameznih letih.")
+cat("Rišem stolpični graf: \n število držav razvrščenih v skupine glede na delež uporabnikov interneta po posameznih letih.")
 cairo_pdf("slike/graf2.pdf", family = "Arial")
 drugi_graf()
 dev.off()
