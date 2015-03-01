@@ -1,8 +1,8 @@
 # 4. faza: Analiza podatkov
 
 library("animation")
-library("psych", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
-library("gridExtra", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
+library("psych")
+library("gridExtra")
 
 # 2.) tabela z vsemi uporabnimi podatki zbranimi
 zdruzeno <- data.frame(svet[,c(19,c(64:93))])
@@ -10,6 +10,7 @@ zdruzeno <- data.frame(svet[,c(19,c(64:93))])
 slovenija <- zdruzeno[205, ]
 slo<-data.frame(t(slovenija[,c(2:15)]), t(slovenija[,c(18:31)]))
 colnames(slo)<-c("internet", "gdp_pc")
+
 # Pri vseh drzavah bi dobili podobno, npr. za Slovenijo:
 attach(slo)
 cairo_pdf("slike/slo1.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)

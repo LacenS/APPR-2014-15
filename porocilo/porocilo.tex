@@ -34,13 +34,13 @@ Cilj projekta je spoznavanje programa R skozi analizo podatkov.
 
 V svoj program sem uvozila 3 tabele  v obliki \verb|.csv| ter 4 iz spletnih strani. Tu mi je največ težav povzročalo to, da R striktno ločuje tipe podatkov\-(\verb|matrika, data.frame...|) in da sem ugotovila s kakimi tabelami delam. Veliko časa sem tudi porabila, da sem preimenovala stolpce in vrstice. To se je v kasnejših fazah, sploh pri številskih označbah(na primer za posamezna leta) izkazalo za slabo potezo, saj je pri uporabi podatkov iz tabel pomembno, da stolpci in vrstice nimajo številskih imen. 
 
-Prva tabela je bila v obliki csv in predstavlja podatke po posameznih državah o deležu uporabnikov interneta, med leti 1993-2013. Stolpci predstavljajo posamezno leto, vrstice pa posamezno državo.
+\\Prva tabela je bila v obliki csv in predstavlja podatke po posameznih državah o deležu uporabnikov interneta, med leti 1993-2013. Stolpci predstavljajo posamezno leto, vrstice pa posamezno državo.
 V drugi tabeli so predstavljeni podatki za leto 2014, vsebujejo tudi podatke o rasti prebivalstva, rasti uporabnikov interneta za posamezno državo, uvožena je bila v obliki html.
 Tretja tabela vsebuje podatke za leta 1993-2014 glede na svetovno populacijo, uvožena je bila v obliki html.
-Četrta tabela je bila prav tako uvožena v obliki html, vsebuje pa podatke o uporabnikih interneta glede na posamezen kontinent. Peto in šesto tabelo sem prav tako uvozila v obliki html, prva vsebuje podatke o gdp pc, po posameznih letih ter državah, druga pa podatke o pričakovani življenjski dobi v letu 2011, po posamezni državi.
-Vsem tabelam je skupno to, da vrstice sestavljajo posamezne države, med tem ko pa so spremenljivke po stolpcih večinoma posamezna leta.
+Četrta tabela je bila prav tako uvožena v obliki html, vsebuje pa podatke o uporabnikih interneta glede na posamezen kontinent. Peto in šesto tabelo sem tudi uvozila v obliki html, prva vsebuje podatke o gdp pc, po posameznih letih ter državah, druga pa podatke o pričakovani življenjski dobi v letu 2011, po posamezni državi.
+\\Vsem tabelam je skupno to, da vrstice sestavljajo posamezne države, med tem ko pa so spremenljivke po stolpcih večinoma posamezna leta.
 
-Več o uvozu posamezne tabele je še v datoteki \verb|uvoz/uvoz.r| v komentarjih. 
+\\Več o uvozu posamezne tabele je še v datoteki \verb|uvoz/uvoz.r| v komentarjih. 
 
 \smallskip
 Nekaj tabel sem v R-ju zaradi kasnejše analize sestavila sama s pomočjo uvoženih datotek.
@@ -59,7 +59,7 @@ Podatke sem pridobila iz naslednjih spletnih strani:
 \bigskip
 Iz tabel sem nato narisala grafe. Ta del se mi zdi najbolj zahteven saj obstaja ogromno funkcij za risanje tabel in vsaka ima svoje specifike v kakšni obliki moraš podat podatke.
 
-\bigskip
+\newpage
 Prvi graf je stolpični in prikazuje prvih 10 držav, ki predstavljajo največji delež uporabnikov interneta po svetu. Prvi stolpec prikazuje kolikšen delež prebivalcev ima dostop do interneta, drugi pa kolikšen delež uporabnikov interneta predstavljajo.
 
 Tu se mi je zdelo najbolj zanimivo, da recimo Kitajci predstavljajo več kot 20 \% vseh uporabnikov interneta, med tem ko jih ima manj kot 50 \% dostop do interneta.
@@ -136,10 +136,10 @@ V četrti fazi projekta sem se najprej odločila, da bom sestavila 2 animaciji. 
 \\
 \verb|-spreminjanje.uporabnikov.interneta.in.gdp.html|
 \\
-Potrebno jih je odpret v brskalniku in ročno pognat animacijo, saj nisem želela, da ju avtomatsko odpira, ker se mi je zdelo moteče.
+Potrebno jih je odpret v poljubnem spletnem brskalniku in ročno pognat animacijo, saj nisem želela, da ju avtomatsko odpira, ker se mi je zdelo moteče.
 \newpage
 
-Prva animacija prikazuje spreminjanje deleža uporabnikov interneta med leti 2000-2014
+Prva animacija prikazuje spreminjanje deleža uporabnikov interneta med leti 2000-2014. Iz nje se lepo vidi, kako skozi leta v vseh državah delež uporabnikov narašča.
 \begin{center}
 \begin{figure}
   \animategraphics[controls, loop, autoplay, width=1.2\linewidth]{1}{../slike/animacija}{}{}
@@ -148,7 +148,8 @@ Prva animacija prikazuje spreminjanje deleža uporabnikov interneta med leti 200
 \end{center}
 
 \newpage
-Druga animacija pa prikazuje spreminjanje deleža uporabnikov interneta v primerjavi s spreminjanjem gdp pc med leti 2000-2013.
+Druga animacija pa prikazuje spreminjanje deleža uporabnikov interneta v primerjavi s spreminjanjem gdp pc med leti 2000-2013. Za vsako posamezno leto sem pri prikazovanju gdp pc uporabila malenkost drugačno legendo, z namenom da so države približno sorazmerno razporejene v različne skupine, da se lahko kaj razbere iz zemljevida. Najprej sem si definirala spremenljivko \verb|kateg|, ki sem jo določila tako, da sem od maksimalne vrednosti odštela minimalno ter delila z 10, saj sem želela države razdelit v 10 skupin. Vendar se je tu pojavila težava, saj je bila vrednost gdp pc zelo neenakomerno razporejena in bi bile potem države v grobem razdeljene v nekje približno 3 skupine, tako se pa ne bi nič razbralo iz zemljevida. Zato sem se odločila, da je prva kategorija  do 1/4 kateg, druga od 1/4 do 1*kateg in potem ostale naprej enakomerno. Našla sem sicer več funkcij, ki bi naj same podatke pogrupirale v posamezne skupine, vendar so mi vse povzročale težave in se zemljevid ni lepo obarval.
+
 \begin{center}
 \begin{figure}
   \animategraphics[controls, loop, autoplay, width=1.2\linewidth]{1}{../slike/animacija2}{}{}
@@ -164,6 +165,8 @@ Povezava med gdp pc ter deležem uporabnikov interneta se lepo vidi tudi na tem 
  \end{center}
 \end{figure}
 
+Graf je narisan s funkcijo \verb|qplot|, ki ima že vgrajeno opcijo \verb|"smooth"| in sama poišče krivuljo, ki najbolje aproksimira podane točke.
+
 \newpage
 Nato sem primerjala še povezavo med življenjsko dobo ter deležem uporabnikov interneta, se tudi vidi, da je povezava med tema spremenljivkama:
 \begin{figure}[h!] 
@@ -173,7 +176,9 @@ Nato sem primerjala še povezavo med življenjsko dobo ter deležem uporabnikov 
 \end{figure}
 
 \newpage
-Na naslednjem grafu sem upo?tevala samo 15 dr?av, saj se sicer ne bi ni? videlo. Izbrala sem 5 spodnjih, 5 srednjih ter 5 zgornjih dr?av glede na dele? uporabnikov interneta v letu 2013.
+Na naslednjem grafu sem upoštevala samo 15 držav, saj se sicer ne bi nič videlo. Izbrala sem 5 spodnjih, 5 srednjih ter 5 zgornjih držav glede na delež uporabnikov interneta v letu 2013.
+Podatke sem najprej obdelala s funkcijo \verb|scale|, da sem jih lahko primerjala med seboj, nato sem uporabila funkcijo \verb|kmeans|, da sem jih pogrupirala v 6 skupin ter nato narisala graf s funkcijo \verb|pairs|. Iz grafa je lepo razvidna povezava med posameznimi spremenljivkami. Višja kot je na primer pričakovana življenjska doba, večji je delež uporabnikov interneta ter večji je gdp pc.
+
 \begin{figure}[h!] 
 \begin{center}
  \includepdf[width=\textwidth]{../slike/pari1.pdf}
@@ -182,7 +187,8 @@ Na naslednjem grafu sem upo?tevala samo 15 dr?av, saj se sicer ne bi ni? videlo.
 
 
 \newpage
-Za zanimivost pa še podatki za Slovenijo. Iz tega grafa je lepo vidno, da delež uporabnikov interneta narašča skladno z naraščanjem gdp pc.
+Za zanimivost pa še podatki za Slovenijo. Iz tega grafa je lepo vidno, da delež uporabnikov interneta narašča skladno z naraščanjem gdp pc. Enačba modre premice na grafu je \verb|lm(internet~gdp_pc)|, kar nakazuje da je delež uporabnikov interneta približno linearno odvise od višine gdp pc. Sodeč po grafih ali za posamezno leto ali za posamezno državo v splošnem ni tako, bolj spominjajo grafi na kakšno iznakaženo logaritemsko funkcijo, vendar nisem uspela najti funkcije, ki bi boljše aproksimirala. 
+
 \begin{figure}[h!] 
 \begin{center}
  \includepdf[width=\textwidth]{../slike/slo1.pdf}
@@ -191,7 +197,7 @@ Za zanimivost pa še podatki za Slovenijo. Iz tega grafa je lepo vidno, da dele�
 
 \newpage
 \section{Zaključek}
-Vidimo lahko, da v splošnem obstaja nekaj povezava med deležem uporabnikov interneta, višino gdp pc ter pričakovano življenjsko dobo. V grobem lahko rečemo, da višji delež uporabnikov interneta pomeni višjo pričakovano življenjsko dobo ter višji gdp pc, seveda pa obstajajo tudi izjeme.
+Vidimo lahko, da v splošnem obstaja neka povezava med deležem uporabnikov interneta, višino gdp pc ter pričakovano življenjsko dobo. V grobem lahko rečemo, da višji delež uporabnikov interneta pomeni višjo pričakovano življenjsko dobo ter višji gdp pc v posamezni državi, seveda pa obstajajo tudi izjeme.
 
 \end{document}
 

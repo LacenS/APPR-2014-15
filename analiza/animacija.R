@@ -1,6 +1,6 @@
 library("animation")
-library("psych", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
-library("gridExtra", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
+library("psych")
+library("gridExtra")
 
 # 1. animacija spreminjanja deleža uporabnikov interneta od leta 2000-2014
 cat("Izdelujem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2014")
