@@ -1,5 +1,5 @@
 # 4. faza: Analiza podatkov
-source("vizualizacija/vizualizacija.r")
+
 library("animation")
 library("psych", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
 library("gridExtra", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
@@ -47,17 +47,18 @@ detach(povzetek)
 attach(nova2)
 cairo_pdf("slike/gdpinternet.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 print(qplot(X2013, gdp2013, data = nova2, geom = c("point", "smooth"),
-            main = "Razmerje med gdp pc v US$ ter deležem uporabnikov interneta",
-            xlab = "Uporabniki interneta", ylab = "gdp pc v US$"))
+            main = "Razmerje med gdp pc v US$\n ter deležem uporabnikov interneta",
+            xlab = "Uporabniki interneta", ylab = "gdp pc v US$", cex = .8))
 dev.off()
 
 # ter med pricakovano zivljenjsko dobo ter delezem uporabnikov interneta
 cairo_pdf("slike/letainternet.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 print(qplot(X2011, leta, data = nova2, geom = c("point", "smooth"), 
-            main = "Razmerje med pričakovano življenjsko dobo ter deležem uporabnikov interneta",
-            xlab = "Uporabniki interneta"))
+            main = "Razmerje med pričakovano življenjsko dobo\n ter deležem uporabnikov interneta", cex = .8,
+            xlab = "Uporabniki interneta", ylab = "Pričakovana življenjska doba"))
+
+dev.off()
 detach(nova2)
-dev.off
 
 
 

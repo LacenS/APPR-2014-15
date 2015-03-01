@@ -44,8 +44,7 @@ tretji_graf <- function() {
 #         + theme(axis.text.x = element_text(size = 5)))
   plot(rev(t3[,5]), type='l', lwd=2, col = 'black', main = "Delež uporabnikov interneta med 2000-2014",
        xlab="Leta", ylab = "%", xaxt="n")
-
-  axis(1,at=seq(1993,2014,2),labels=rev(rownames(t3))[seq(1,22,2)])
+  axis(1,at=1:22,labels=c(1993:2014), cex=.6)
 }
 
 # Pita iz tabele t4

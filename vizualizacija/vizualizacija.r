@@ -511,7 +511,8 @@ par(mar = rep(2, 4))
 plot(svet, col = barve13)
 legend("bottom",kateg2013, fill = vektor,
        border = "black", cex=.42, xjust=0.5, horiz=TRUE, title = "Gdp pc v US$")
-title("Delež uporabnikov interneta v letu 2013", cex.main = 1.5,   font.main= 2, col.main= "black")
+title("Gdp pc v US$ letu 2013", cex.main = 1.5,   font.main= 2, col.main= "black")
+
 plot(svet, col = barvegdp13)
 title("GDPpc v letu 2013", 
       cex.main = 2,   font.main= 3, col.main= "black")

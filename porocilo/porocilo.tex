@@ -30,17 +30,20 @@ Tema mojega projekta je spreminjanje deleža uporabnikov interneta skozi leta po
 \bigskip 
 Cilj projekta je spoznavanje programa R skozi analizo podatkov.
 
-
-
 \section{Obdelava, uvoz in čiščenje podatkov}
 
 V svoj program sem uvozila 3 tabele  v obliki \verb|.csv| ter 4 iz spletnih strani. Tu mi je največ težav povzročalo to, da R striktno ločuje tipe podatkov\-(\verb|matrika, data.frame...|) in da sem ugotovila s kakimi tabelami delam. Veliko časa sem tudi porabila, da sem preimenovala stolpce in vrstice. To se je v kasnejših fazah, sploh pri številskih označbah(na primer za posamezna leta) izkazalo za slabo potezo, saj je pri uporabi podatkov iz tabel pomembno, da stolpci in vrstice nimajo številskih imen. 
+
+Prva tabela je bila v obliki csv in predstavlja podatke po posameznih državah o deležu uporabnikov interneta, med leti 1993-2013. Stolpci predstavljajo posamezno leto, vrstice pa posamezno državo.
+V drugi tabeli so predstavljeni podatki za leto 2014, vsebujejo tudi podatke o rasti prebivalstva, rasti uporabnikov interneta za posamezno državo, uvožena je bila v obliki html.
+Tretja tabela vsebuje podatke za leta 1993-2014 glede na svetovno populacijo, uvožena je bila v obliki html.
+Četrta tabela je bila prav tako uvožena v obliki html, vsebuje pa podatke o uporabnikih interneta glede na posamezen kontinent. Peto in šesto tabelo sem prav tako uvozila v obliki html, prva vsebuje podatke o gdp pc, po posameznih letih ter državah, druga pa podatke o pričakovani življenjski dobi v letu 2011, po posamezni državi.
+Vsem tabelam je skupno to, da vrstice sestavljajo posamezne države, med tem ko pa so spremenljivke po stolpcih večinoma posamezna leta.
 
 Več o uvozu posamezne tabele je še v datoteki \verb|uvoz/uvoz.r| v komentarjih. 
 
 \smallskip
 Nekaj tabel sem v R-ju zaradi kasnejše analize sestavila sama s pomočjo uvoženih datotek.
-
 \bigskip
 Podatke sem pridobila iz naslednjih spletnih strani:
 \begin{itemize} 
@@ -59,7 +62,7 @@ Iz tabel sem nato narisala grafe. Ta del se mi zdi najbolj zahteven saj obstaja 
 \bigskip
 Prvi graf je stolpični in prikazuje prvih 10 držav, ki predstavljajo največji delež uporabnikov interneta po svetu. Prvi stolpec prikazuje kolikšen delež prebivalcev ima dostop do interneta, drugi pa kolikšen delež uporabnikov interneta predstavljajo.
 
-Tu se mi je zdelo najbolj zanimivo, da recimo Kitajci predstavljajo več kot 20 \% vseh uporabnikov interneta, med tem, ko jih ima manj kot 50 \% dostop do interneta.
+Tu se mi je zdelo najbolj zanimivo, da recimo Kitajci predstavljajo več kot 20 \% vseh uporabnikov interneta, med tem ko jih ima manj kot 50 \% dostop do interneta.
 
 \includepdf[pages={1}, scale=.7]{../slike/graf1.pdf}
 
@@ -121,12 +124,22 @@ Na četrtem zemljevidu je pa vidna primerjava med višino GDP pc ter deležem up
 
 \begin{figure}[h!]
 \begin{center}
-  \includepdf[pages={1},nup=1x2, scale=.65]{../slike/zemljevid4.pdf}
+  \includepdf[pages={1-2},nup=1x2, scale=.6]{../slike/zemljevid4.pdf}
   \end{center}
 \end{figure}
 
 \newpage
 \section{Napredna analiza podatkov}
+V četrti fazi projekta sem se najprej odločila, da bom sestavila 2 animaciji. Ker vsi operacijski sistemi ne podpirajo animacij v pdf obliki, sem animacije sestavila tudi v html obliki. Ko poženeš projekt se v mapi "APPR-2014-15" pojavita 2 html datoteki:
+\\
+\verb|-spreminjanje.uporabnikov.interneta.html|
+\\
+\verb|-spreminjanje.uporabnikov.interneta.in.gdp.html|
+\\
+Potrebno jih je odpret v brskalniku in ročno pognat animacijo, saj nisem želela, da ju avtomatsko odpira, ker se mi je zdelo moteče.
+\newpage
+
+Prva animacija prikazuje spreminjanje deleža uporabnikov interneta med leti 2000-2014
 \begin{center}
 \begin{figure}
   \animategraphics[controls, loop, autoplay, width=1.2\linewidth]{1}{../slike/animacija}{}{}
@@ -134,6 +147,8 @@ Na četrtem zemljevidu je pa vidna primerjava med višino GDP pc ter deležem up
 
 \end{center}
 
+\newpage
+Druga animacija pa prikazuje spreminjanje deleža uporabnikov interneta v primerjavi s spreminjanjem gdp pc med leti 2000-2013.
 \begin{center}
 \begin{figure}
   \animategraphics[controls, loop, autoplay, width=1.2\linewidth]{1}{../slike/animacija2}{}{}
@@ -141,7 +156,42 @@ Na četrtem zemljevidu je pa vidna primerjava med višino GDP pc ter deležem up
 
 \end{center}
 
+\newpage
+Povezava med gdp pc ter deležem uporabnikov interneta se lepo vidi tudi na tem grafu(podatki so za leto 2013):
+\begin{figure}[h!] 
+\begin{center}
+ \includepdf[width=\textwidth]{../slike/gdpinternet.pdf}
+ \end{center}
+\end{figure}
 
+\newpage
+Nato sem primerjala še povezavo med življenjsko dobo ter deležem uporabnikov interneta, se tudi vidi, da je povezava med tema spremenljivkama:
+\begin{figure}[h!] 
+\begin{center}
+ \includepdf[width=\textwidth]{../slike/letainternet.pdf}
+ \end{center}
+\end{figure}
+
+\newpage
+Na naslednjem grafu sem upo?tevala samo 15 dr?av, saj se sicer ne bi ni? videlo. Izbrala sem 5 spodnjih, 5 srednjih ter 5 zgornjih dr?av glede na dele? uporabnikov interneta v letu 2013.
+\begin{figure}[h!] 
+\begin{center}
+ \includepdf[width=\textwidth]{../slike/pari1.pdf}
+ \end{center}
+\end{figure}
+
+
+\newpage
+Za zanimivost pa še podatki za Slovenijo. Iz tega grafa je lepo vidno, da delež uporabnikov interneta narašča skladno z naraščanjem gdp pc.
+\begin{figure}[h!] 
+\begin{center}
+ \includepdf[width=\textwidth]{../slike/slo1.pdf}
+ \end{center}
+\end{figure}
+
+\newpage
+\section{Zaključek}
+Vidimo lahko, da v splošnem obstaja nekaj povezava med deležem uporabnikov interneta, višino gdp pc ter pričakovano življenjsko dobo. V grobem lahko rečemo, da višji delež uporabnikov interneta pomeni višjo pričakovano življenjsko dobo ter višji gdp pc, seveda pa obstajajo tudi izjeme.
 
 \end{document}
 
