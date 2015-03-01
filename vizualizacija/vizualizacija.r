@@ -53,6 +53,11 @@ imena.t2["Viet Nam"] <- "Vietnam"
 imena.t8 <- rownames(t8)
 names(imena.t8) <- imena.t8
 
+# Pri tabeli t6 je problem Rusija
+imena.t6 <- rownames(t6)
+names(imena.t6) <- imena.t6
+imena.t6["Russian Federation"] <- "Russia"
+
 # Iz tabel t1, t2 in t8 naredimo nove tabele v katerih se vrstni red podatkov ujema s podatki iz zemljevida
 m1 <- match(imena.svet, rownames(t1))
 m2 <- match(imena.svet, imena.t2)
@@ -60,7 +65,7 @@ m3 <- match(imena.svet, rownames(t8))
 tab1 <- data.frame(t1[m1,])
 tab2 <- data.frame(t2[m2,])
 tab3 <- data.frame(t8[m3,])
-m4 <- match(imena.svet, rownames(t6))
+m4 <- match(imena.svet, imena.t6)
 tab6 <- data.frame(t6[m4,])
 
 # Dodamo stolpce s podatki v zemljevid
@@ -141,9 +146,19 @@ barve_leta[which(svet$leta >= 80)] <- vektor2[8]
 kategorije <- c("0-10 %", "10-20 %", "20-30 %", "30-40 %", "40-50 %", 
                 "50-60 %", "60-70 %", "70-80 %", "80-90 %", "90-100 %")
 #za zemljevid gdp
-vek<-as.numeric(cut(svet$gdp2013, 10))
-bar <- rev(c(brewer.pal(9,"Greens"), "darkgreen"))
-barvegdp13 <-ifelse(is.na(vek), "white", bar[vek])
+kateg13 <- (max(svet$gdp2013, na.rm=TRUE)-min(svet$gdp2013, na.rm=TRUE))/10
+bar <- c(brewer.pal(9,"Greens"), "darkgreen")
+barvegdp13 <- ifelse(is.na(svet$gdp2013), "white", "black")
+barvegdp13[which(svet$gdp2013 < kateg13/4)] <- bar[1]
+barvegdp13[which(svet$gdp2013 >= kateg13/4 & svet$gdp2013 < kateg13)] <- bar[2]
+barvegdp13[which(svet$gdp2013 >= kateg13 & svet$gdp2013 < 2*kateg13)] <- bar[3]
+barvegdp13[which(svet$gdp2013 >= 2*kateg13 & svet$gdp2013 < 3*kateg13)] <- bar[4]
+barvegdp13[which(svet$gdp2013 >= 3*kateg13 & svet$gdp2013 < 4*kateg13)] <- bar[5]
+barvegdp13[which(svet$gdp2013 >= 4*kateg13 & svet$gdp2013 < 5*kateg13)] <- bar[6]
+barvegdp13[which(svet$gdp2013 >= 5*kateg13 & svet$gdp2013 < 6*kateg13)] <- bar[7]
+barvegdp13[which(svet$gdp2013 >= 6*kateg13 & svet$gdp2013 < 7*kateg13)] <- bar[8]
+barvegdp13[which(svet$gdp2013 >= 7*kateg13 & svet$gdp2013 < 8*kateg13)] <- bar[9]
+barvegdp13[which(svet$gdp2013 >= 8*kateg13)] <- bar[10]
 
 
  #1. zemljevid glede na leto 2000, 2007, 2014
@@ -185,7 +200,7 @@ points(coordinates(svet[drzave1, ]), pch = 20, col = "gold", cex = .3)
 points(coordinates(svet[drzave2, ]), pch = 20, col = "deeppink", cex = .3) 
 dev.off()
 
-# 3 zemljevid: primerjava pri??akovane ?ivljenjske dobe in dele?a uporabnikov v letu 2011
+# 3 zemljevid: primerjava pričakovane ?ivljenjske dobe in dele?a uporabnikov v letu 2011
 cat("Rišem zemljevid deleža uporabnikov interneta po svetu v letu 2011 \n v primerjavi s pričakovano življenjsko dobo. \n")
 cairo_pdf("slike/zemljevid3.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 par(mar = rep(2, 4))
@@ -208,16 +223,15 @@ dev.off()
 cat("Rišem zemljevid gdp pc v letu 2013. \n")
 cairo_pdf("slike/zemljevid4.pdf", width = 6, height = 4, family = "Arial", onefile = TRUE)
 par(mar = rep(2, 4))
-plot(svet, col = barvegdp13)
-#tukaj ne prikaze podatkov o USA
-title("GDPpc v letu 2013", 
-      cex.main = 2,   font.main= 3, col.main= "black")
-legend("bottom", kategorije, fill = vek,
-       border = "black", cex=.42, xjust=0.5, horiz=TRUE)
-plot(svet, col=barve14)
+plot(svet, col = barve14)
 legend("bottom",kategorije, fill = vektor,
        border = "black", cex=.42, xjust=0.5, horiz=TRUE)
 title("Delež uporabnikov interneta v letu 2014", cex.main = 1.5,   font.main= 2, col.main= "black")
+plot(svet, col = barvegdp13)
+title("GDPpc v letu 2013", 
+      cex.main = 2,   font.main= 3, col.main= "black")
+legend("bottom", kategorije, fill = bar,
+       border = "black", cex=.42, xjust=0.5, horiz=TRUE)
 
 dev.off()
 
