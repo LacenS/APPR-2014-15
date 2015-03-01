@@ -5,7 +5,7 @@ library("gridExtra", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resou
 # 1. animacija spreminjanja deleža uporabnikov interneta od leta 2000-2014
 cat("Izdelujem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2014")
 #html verzija
-oopts = ani.options(interval = 2, autobrowse = FALSE, outdir = "analiza")
+oopts = ani.options(interval = 2, autobrowse = FALSE)
 ani.record(reset = TRUE) 
 saveHTML(autoplay=FALSE,{
   dev.control("enable")  #Omogoči "snemanje"
@@ -204,9 +204,9 @@ dev.off()
 
 
 # 3.) primerjava spreminjanja gdp ter uporabnikov interneta na zemljevidu
-cat("Izdelujem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2013 \nv primerjavi s spreminjanjem gdp pc ")
+cat("Izdelujem animacijo spreminjanja deleža uporabnikov interneta med leti 2000-2013 \nv primerjavi s spreminjanjem gdp pc. ")
 ani.record(reset = TRUE) 
-oopts2 = ani.options(interval = 4, autobrowse = FALSE, outdir = "analiza")
+oopts2 = ani.options(interval = 4, autobrowse = FALSE)
 saveHTML(autoplay=FALSE,{
   dev.control("enable")  # enable recording
   par(bg = "white")  # ensure the background color is white
