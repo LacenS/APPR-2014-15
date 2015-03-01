@@ -3,7 +3,6 @@
 # Uvozimo funkcijo za pobiranje in uvoz zemljevida.
 source("lib/uvozi.zemljevid.r")
 source("fontconfig.r")
-source("vizualizacija/barve.R")
 
 #Naložimo pakete, ki jih bomo potrebovali
 library(maptools)
@@ -41,7 +40,7 @@ imena.t2 <- rownames(t2)
 names(imena.t2) <- imena.t2
 imena.t2["Bosnia Herzegovina"] <- "Bosnia and Herzegovina"
 imena.t2["Brunei"] <- "Brunei Darussalam"
-imena.t2["Congo"] <- "Republic of Congo" # ni jasno, katera dr?ava je mi?ljena
+imena.t2["Congo"] <- "Republic of Congo" 
 imena.t2["Gambia"] <- "The Gambia"
 imena.t2["Hong Kong SAR"] <- "Hong Kong"
 imena.t2["Micronesia"] <- "Federated States of Micronesia"
